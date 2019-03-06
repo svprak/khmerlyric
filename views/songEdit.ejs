@@ -1,0 +1,109 @@
+<% include partials/header.ejs %>
+
+<div class="container">
+  <h1 class="mt-5 taprom-font">
+    <%= song.songTitleKh %>
+  </h1>
+
+  <hr>
+  <div class="row">
+    <div class="col-md-2"> </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Update
+          <%= song.songTitleKh %> Song to the book
+          <%= song.songBook %>
+        </div>
+        <div class="card-body">
+          <form action="/song/<%=song._id%>?_method=PUT" method="POST">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="selectBook">Choose book</label>
+                <select class="form-control" name="bookId" id="selectBook">
+                  <option value="<%= song.book %>">
+                    <%= song.songBook %>
+                  </option>
+                  <% bookNames.forEach((book)=> {%>
+                  <option value="<%=book._id %>">
+                    <%=book.bookName%>
+                  </option>
+                  <%})%>
+                </select>
+              </div>
+
+              <div class="form-group​​ col-md-6">
+                <label for=" inputEmail4">Song ID</label>
+                <input type="text" value="<%=song.songId%>" name="songId" class="form-control" id="inputEmail4"
+                  placeholder="Song Id">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Song title in Khmer</label>
+                <input type="text" value="<%=song.songTitleKh%>" name="songTitleKh" class="form-control" id="inputPassword4"
+                  placeholder="Song title in Khmer">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Song title in English</label>
+                <input type="text" value="<%=song.songTitleEn%>" name="songTitleEn" class="form-control" id="inputPassword4"
+                  placeholder="Song title in English">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="songType">Song Type</label>
+                <select class="form-control" name="songType" id="songType">
+                  <option value="<%= song.songType %>">
+                    <%=song.songType%>
+                  </option>
+                  <option value="ថ្វាយ​សិរី​រុង​រឿង">១-៣៦ ថ្វាយ​សិរី​រុង​រឿង</option>
+                  <option value="ព្រះ​គ្រីស្ទ​ប្រសូត">៣៧-៤៧ ព្រះ​គ្រីស្ទ​ប្រសូត</option>
+                  <option value="ព្រះ​គ្រីស្ទ​ប្រសូតសុគត​ហើយ​រស់​ឡើង​វិញ">៤៨-៦០ ព្រះ​គ្រីស្ទ​ប្រសូតសុគត​ហើយ​រស់​ឡើង​វិញ</option>
+                  <option value="សេចក្តី​ប្រកាស​អំពី​ព្រះ​យេស៊ូវ">៦១-៨១ សេចក្តី​ប្រកាស​អំពី​ព្រះ​យេស៊ូវ</option>
+                  <option value="ព្រះវិញ្ញាណ​បរិសុទ្ធ">៨២-៩១ ព្រះវិញ្ញាណ​បរិសុទ្ធ</option>
+                  <option value="សេចក្តី​បន្ទាល់">៩២-១៥១ សេចក្តី​បន្ទាល់</option>
+                  <option value="ជីវភាព​គ្រីស្ទជន">១៥២-១៨៦ ជីវភាព​គ្រីស្ទជន</option>
+                  <option value="សេចក្តី​អធិស្ឋាន">១៨៧-២២៦ សេចក្តី​អធិស្ឋាន</option>
+                  <option value="ជ័យ​ជម្នះ​របស់​គ្រីស្ទជន">២២៧-២៤០ ជ័យ​ជម្នះ​របស់​គ្រីស្ទជន</option>
+                  <option value="អំណរ ​និង​ក្តី​សង្ឍឹម​របស់​គ្រីស្ទជន">២៤១-២៦០ អំណរ ​និង​ក្តី​សង្ឍឹម​របស់​គ្រីស្ទជន</option>
+                  <option value="បទ​គម្ពីរ​ជា​កំណាព្យ">២៦១-២៦២ បទ​គម្ពីរ​ជា​កំណាព្យ</option>
+                  <option value="ទំនុក​ក្នុង​ពិធី​ផ្សេងៗ​របស់​គ្រីស្ទជន">២៦៣-២៨០ ទំនុក​ក្នុង​ពិធី​ផ្សេងៗ​របស់​គ្រីស្ទជន</option>
+                  <option value="ផ្នែក​បន្ថែម​ដោយ​ចម្រុះ​ន័យ">២៨១-២៩៩ ផ្នែក​បន្ថែម​ដោយ​ចម្រុះ​ន័យ</option>
+                  <option value="ប្រសិទ្ធីពរ និង​លាគ្នា">៣០០-៣០៥ ប្រសិទ្ធីពរ និង​លាគ្នា</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Written By</label>
+                <input type="text" value="<%=song.songBy%>" name="songBy" class="form-control" id="inputAddress"
+                  placeholder="Enter Author">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2">Song Lyrics</label>
+              <textarea type="text" name="songLyric" class="form-control" id="inputAddress2" placeholder="Enter Your Lyric here">
+<%=song.songLyric%></textarea>
+            </div>
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary float-right"><i class="far fa-address-book"></i> Update Song</button>
+          <a href="/song %>" class="btn btn-primary"><i class="fas fa-backward"></i> Back to Song list</a>
+          <a href="/song/<%= song._id %>" class="btn btn-primary"><i class="fas fa-backward"></i> Back</a>
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="col-md-2"> </div>
+  </div>
+</div>
+
+
+<script>
+  CKEDITOR.replace('songLyric');
+</script>
+
+<% include partials/footer.ejs %>

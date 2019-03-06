@@ -1,0 +1,51 @@
+</div>
+
+<footer id="main-footer" class="text-center p-4​ mt-5"> 
+    <hr>
+    <div class="row">
+      <div class="col-md-4">
+
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <p>
+          <span id="year"></span> - Praise God through songs
+        </p>
+      </div>
+    </div>
+  
+</footer>
+
+<!-- jQuery Script -->
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+ 
+<!-- Bootstrap Script -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP"
+  crossorigin="anonymous"></script>
+
+
+<script>
+  var days = ['ចន្ទ័', 'អង្គារ', 'ពុធ', 'ព្រហស្បត្ត៌', 'សុក្រ', 'សៅរ៌', 'អាទិត្យ'];
+  var months = ['មករា', 'កុម្ភ', 'មិនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិការ',
+    'ធ្នូ'
+  ];
+  var mindex = new Date().getMonth();
+  var dindex = new Date().getDay();
+  $('#year').text(new Date().getFullYear());
+  $('#month').text(months[mindex]);
+  $('#day').text(days[dindex]);
+
+  
+
+  // to print page lyric
+  function printLyric() {
+    window.print();
+  }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<div class="row mt-3">
+  <div id="demo" class="col-lg text-center">
+    <% if(pageStart==1){ %>
+    <a class="btn btn-outline-secondary disabled btn-sm" href="/song/?page=<%= pageStart-1%>&prev=<%= count-1 %>">
+      <i class="fas fa-angle-double-left"></i></a>
+    <%} else {%>
+    <a class="btn btn-outline-primary btn-sm " href="/song/?page=<%= pageStart-1%>&prev=<%= count-1 %>">
+      <i class="fas fa-angle-double-left"></i></a>
+    <%}%>
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <% if(isEnd){ %>
+    <a class="btn btn-outline-secondary  disabled btn-sm" href="/song/?page=<%= pageStart+1%>&prev=<%= count+1 %>"><i
+        class="fas fa-angle-double-right"></i></a>
+    <%} else {%>
+    <a class="btn btn-outline-primary btn-sm" href="/song/?page=<%= pageStart+1%>&prev=<%= count+1 %>"><i class="fas fa-angle-double-right"></i></a>
+    <%}%>
+  </div>
+</div>

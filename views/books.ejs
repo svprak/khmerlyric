@@ -1,0 +1,74 @@
+<% include partials/header.ejs %>
+<div class="container">
+  <% if(songbooks.length <=0) { %>
+  <h1 class="mt-5">
+    - Number of Book :
+    <%= bookCount %>
+  </h1>
+  <p>Welcome to
+
+  </p>
+  <hr />
+  <div class="row">
+    <div class="col-md-12">
+      <p class="bookTitle-1">
+        No book is available to select.
+        <a href="/book/new">Add new song book?</a>
+      </p>
+    </div>
+  </div>
+  <% } else { %>
+  <h1 class="mt-5 title-size-2">
+    សៀវភៅចម្រៀងសរសើរ​ព្រះ​ជា​ខេមរភាសាមាន
+    <%= bookCount %> ក្បាល
+  </h1>
+  <p>សូម​ស្វាគមន៌​</p>
+  <hr />
+  <div class="row">
+    <% songbooks.forEach((songbook)=>{ %>
+
+    <div class="col-md-2">
+      <div class="card mb-4">
+        <a class="link" href="/book/<%= songbook._id %>/song">
+          <img src="<%= songbook.bookCoverImg %>" class="card-img-top img-fluid" alt="..." /></a>
+        <div class="card-body content-font p-2">
+          <h5 class="card-title descrition pt-2">
+            <a class="link" href="/book/<%= songbook._id %>/song">
+              <%= songbook.bookName %></a>
+          </h5>
+          <ul class="listbook descrition text-muted">
+            <li>
+              ចំនួន​បទ​ចម្រៀង:
+              <%= songbook.numberOfSong %>
+            </li>
+            <li>
+              បោះពុម្ភ:
+              <%= songbook.bookYear %>
+            </li>
+            <li>
+              ផលិតដោយ:
+              <%= songbook.bookBy %>
+            </li>
+          </ul>
+          <!-- <p class="card-text">
+            <%- songbook.bookDescription.slice(0,125) %>...
+          </p> -->
+          <% if(isUser && isUser.role.admin) {%>
+          <div class="operation">
+            <form action="/book/<%= songbook._id %>?_method=DELETE" method="POST">
+              <button class="btn btn-sm btn-danger">
+                <i class="fas fa-remove"></i>
+              </button>
+              <a class="btn btn-sm btn-warning float-right" href="/book/<%= songbook._id %>/edit">
+                <div><i class="fas fa-pencil-alt"></i></div>
+              </a>
+            </form>
+          </div>
+          <%}%>
+        </div>
+      </div>
+    </div>
+    <% }) } %>
+  </div>
+  <% include partials/footer.ejs %>
+</div>

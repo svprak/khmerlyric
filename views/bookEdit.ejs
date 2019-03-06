@@ -1,0 +1,64 @@
+<% include partials/header.ejs %>
+
+<div class="container">
+
+  <div class="row pt-5">
+    <div class="col-md-2"> </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header text-center">
+          <i class="fas fa-pencil-alt"></i>
+          <span class="bookTitle ">
+            <%= book.bookName %></span>
+        </div>
+        <div class="card-body">
+
+          <form action="/book/<%= book._id %>?_method=PUT" method="POST">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Book Title</label>
+                <input type="text" name="bookName" value="<%= book.bookName %>" class="form-control" id="inputEmail4">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Number of Songs</label>
+                <input type="text" name="numberOfSong" value="<%= book.numberOfSong %>" class="form-control" id="inputPassword4">
+              </div>
+
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputAddress2">Year publish</label>
+                <input type="text" name="bookYear" value="<%= book.bookYear %>" class="form-control" id="exampleFormControlFile1"
+                  placeholder="Year that this book is published.">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputAddress">Created By</label>
+                <input type="text" name="bookBy" value="<%= book.bookBy %>" class="form-control" id="inputAddress"
+                  placeholder="Enter the of person or organization who made the book">
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label for="inputAddress2">Book Description</label>
+              <textarea type="text" name="bookDescription" rows="5" class="form-control" id="inputAddress2" placeholder="Enter a short Description about the book.">
+<%= book.bookDescription %> </textarea>
+            </div>
+
+        </div>
+        <div class="card-footer">
+          <button type="submit" class="btn btn-primary  float-right"><i class="fas fa-pencil-alt"></i> Update Song Book</button>
+          <a href="/book" class="btn btn-primary"><i class="fas fa-backward"></i> Back</a>
+          </form>
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="col-md-2"> </div>
+  </div>
+</div>
+<script>
+  CKEDITOR.replace('bookDescription');
+</script>
+<% include partials/footer.ejs %>
