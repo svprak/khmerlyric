@@ -4,7 +4,7 @@
     <div class="row  mt-5">
       <div class="fontForSongLyric col-md-7 col-sm-12">
         <h1 class="title-size-2">
-          <%= title %>
+          <%= song.songTitleKh %>
         </h1>
         <p class="print-button">បទ​ភ្លេង​និង​ទំនុក​:
           <%= song.songBy %>
@@ -20,7 +20,7 @@
             <button class="print-button btn btn-success btn-sm" onclick="printLyric()">
               Print Song
             </button>
-            &nbsp;&nbsp;<a class="print-button btn btn-primary btn-sm" href="/book/<%= song.book.id %>/song"><i class="fas fa-backward"></i>
+            &nbsp;&nbsp;<a class="print-button btn btn-primary btn-sm" href="/song"><i class="fas fa-backward"></i>
               Back</a>
             <!-- <a href="#"><i class="fas fa-download"></i></a> -->
           </div>

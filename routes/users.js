@@ -1,9 +1,9 @@
 const User = require('../models/user.js');
 var passport = require('passport');
-var mongoose = require('mongoose');
+// var mongoose = require('mongoose');
 var express = require('express');
-var localStrategy = require('passport-local');
-var passportLocalMongoose = require('passport-local-mongoose');
+// var localStrategy = require('passport-local');
+// var passportLocalMongoose = require('passport-local-mongoose');
 var router = express.Router();
 
 var isLoggedIn = require('../mw/isLoggedIn');
@@ -36,24 +36,34 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
 /* GET login form. */
 router.get('/login', (req, res, next) => {
   // console.log(req.flash('error'));
-  res.render('login.ejs');
+  if (req.user) {
+    req.flash('error', 'you are already logged in.');
+    res.redirect('/');
+  } else {
+    res.render('login.ejs');
+  }
 });
 // LOGING IN
 router.post(
   '/login',
   passport.authenticate('local', {
-    successRedirect: '/book',
-    failureRedirect: '/login'
+    successRedirect: '/',
+    failureRedirect: '/user/login'
   }),
   function(req, res) {
-    res.redirect('/book');
+    res.redirect('/');
   }
 );
 // LOGIN OUT
 router.get('/logout', function(req, res) {
-  req.logout();
-  req.flash('error', 'Logged you out!!!');
-  res.redirect('/');
+  if (req.user) {
+    // console.log(req.user);
+    req.logout();
+    req.flash('success', 'Logged out successfully!');
+    res.redirect('/');
+  } else {
+    res.redirect('/');
+  }
 });
 
 module.exports = router;

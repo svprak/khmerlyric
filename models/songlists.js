@@ -6,10 +6,9 @@ const songlistSchema = mongoose.Schema({
   songTitleEn: String,
   songBy: String,
   songLyric: String,
-
   songType: String,
   book: {
-    id: {
+    _id: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Songbook',
       require: true

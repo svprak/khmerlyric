@@ -1,27 +1,21 @@
 <% include partials/header.ejs %>
 
 <div class="container">
-  <h1 class="mt-5">
-    <%= title %>
-  </h1>
-  <p>Welcome to
-    <%= title %>
-  </p>
-  <hr>
-  <div class="row">
+
+  <div class="row mt-3">
     <div class="col-md-2"> </div>
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">
-          Add New Song to the book
+        <div class="card-header text-success">
+          បញ្ជូល​បទ​ថ្មីទៅ​ក្នុង​សៀវភៅ
         </div>
         <div class="card-body">
           <form action="/song" method="POST">
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="selectBook">Choose book</label>
+                <label for="selectBook" class="text-info">ជ្រើស​រើស​សៀវភៅ</label>
                 <select class="form-control" name="bookId" id="selectBook">
-                  <option>Choose book...</option>
+                  <option value="default">Choose book...</option>
                   <% bookNames.forEach((book)=> {%>
                   <option value="<%=book._id %>">
                     <%=book.bookName%>
@@ -31,7 +25,7 @@
               </div>
 
               <div class="form-group​​ col-md-6">
-                <label for=" inputEmail4">Song ID</label>
+                <label class="text-info" for=" inputEmail4" class="text-info">លេខ​បទ​ចម្រៀង</label>
                 <input type="text" name="songNumber" class="form-control" id="inputEmail4" placeholder="Song ID"
                   required>
               </div>
@@ -39,18 +33,18 @@
 
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="inputPassword4">Song title in Khmer</label>
+                <label class="text-info" for="inputPassword4">ចំណង​ជើង​ជា​ភាសា​ខ្មែរ</label>
                 <input type="text" name="songTitleKh" class="form-control" id="inputPassword4" placeholder="Song title in Khmer"
                   required>
               </div>
               <div class="form-group col-md-6">
-                <label for="inputPassword4">Song title in English</label>
+                <label class="text-info" for="inputPassword4">ចំណង​ជើង​ជា​ភាសា​អង់​គ្លេស</label>
                 <input type="text" name="songTitleEn" class="form-control" id="inputPassword4" placeholder="Song title in English">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="songType">Song Type</label>
+                <label class="text-info" for="songType">ប្រភេទ​បទ​ចម្រៀង</label>
                 <select class="form-control" name="songType" id="songType">
                   <option>Choose Song Type...</option>
                   <option value="ថ្វាយ​សិរី​រុង​រឿង">១-៣៦ ថ្វាយ​សិរី​រុង​រឿង</option>
@@ -70,19 +64,18 @@
                 </select>
               </div>
               <div class="form-group col-md-6">
-                <label for="inputAddress">Written By</label>
+                <label class="text-info" for="inputAddress">និពន្ធ​ដោយ</label>
                 <input type="text" name="songBy" class="form-control" id="inputAddress" placeholder="Enter Author"
                   required>
               </div>
             </div>
             <div class="form-group">
-              <label for="inputAddress2">Song Lyrics</label>
+              <label class="text-info" for="inputAddress2">អត្តបទ​ចម្រៀង</label>
               <textarea type="text" name="songLyric" class="form-control" id="inputAddress2" placeholder="Enter Your Lyric here"></textarea>
             </div>
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary float-right"><i class="far fa-address-book"></i> Add to Song
-            Book</button>
+          <button type="submit" class="btn btn-primary float-right"><i class="far fa-address-book"></i> Add</button>
           <a href="/book" class="btn btn-primary "><i class="fas fa-backward"></i> Back</a>
           </form>
         </div>

@@ -34,12 +34,11 @@
       <table class="table">
         <thead>
           <tr class="content-font">
-            <th scope="col">#</th>
-            <th scope="col">ចំណង​ជើងខ្មែរ</th>
-            <th scope="col">ចំណង​ជើងអង់គ្លេស</th>
+            <th>#</th>
+            <th>ចំណង​ជើងខ្មែរ</th>
+            <th>ចំណង​ជើងអង់គ្លេស</th>
             <th>ក្នុង​សៀវភៅ</th>
-
-            <th scope="col">មើល</th>
+            <th class="text-center">មើល</th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +58,19 @@
                 <%= song.book.bookName %></a>
             </td>
 
-            <td><a href="/song/<%= song._id %>" class="btn btn-primary btn-sm"><i class="fas fa-eye"></i></a></td>
+            <td class="text-center">
+              <a class="btn btn-primary btn-sm view-song" alt="View Song" title="Views Song" href="/song/<%= song._id %>"><i
+                  class="fas fa-eye "></i></a>
+              <% if(isUser) {%>
+              <form action="/song/<%= song._id %>?_method=DELETE" method="POST" id="delete-form">
+                <a class="btn btn-sm btn-warning" alt="Edit Song" data-toggle="tooltip" title="Edit Song" href="/song/<%= song._id %>/edit">
+                  <i class="fas fa-pencil-alt"></i></a>
+                <button class="btn btn-sm btn-danger" alt="Delete Song" data-toggle="tooltip" title="Delete Song">
+                  <i class="fas fa-remove"></i>
+                </button>
+              </form>
+              <%}%>
+            </td>
           </tr>
           <%}) }%>
         </tbody>

@@ -1,62 +1,58 @@
 <% include partials/header.ejs %>
 
 <div class="container">
-  <h1 class="mt-5">
-    <%= title %>
-  </h1>
-  <p>Welcome to
-    <%= title %>
-  </p>
-  <hr>
-  <div class="row">
+
+  <div class="row mt-4">
     <div class="col-md-2"> </div>
     <div class="col-md-8">
       <div class="card">
-        <div class="card-header">
-          Add New Song Book
+        <div class="card-header font-weight-bold text-success">
+          បញ្ជូល​សៀវភៅ​ថ្មី
         </div>
         <div class="card-body">
 
           <form action="/book" method="POST" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="inputEmail4">Book Title</label>
+                <label class="text-info" for="inputEmail4">ឈ្មោះ​សៀវភៅ</label>
                 <input type="text" name="bookName" class="form-control" id="inputEmail4" placeholder="Enter song title">
               </div>
               <div class="form-group col-md-4">
-                <label for="inputPassword4">Number of Songs</label>
+                <label class="text-info" for="inputPassword4">ចំនូន​បទចម្រៀង</label>
                 <input type="text" name="numberOfSong" class="form-control" id="inputPassword4" placeholder="Enter number of song">
               </div>
               <div class="form-group col-md-4">
-                <label for="inputAddress2">Year publish</label>
+                <label class="text-info" for="inputAddress2">ឆ្នាំ​ផលិត</label>
                 <input type="text" name="bookYear" class="form-control" id="exampleFormControlFile1" placeholder="Year that this book is published.">
               </div>
             </div>
             <div class="form-row">
               <div class="form-group col-md-4">
-                <label for="inputAddress">Created By</label>
+                <label class="text-info" for="inputAddress">ផលិត​ដោយ</label>
                 <input type="text" name="bookBy" class="form-control" id="inputAddress" placeholder="Enter the author">
               </div>
               <div class="form-group  col-md-8" style="margin-bottom: 2px">
-                <label for="inputAddress2">Add Cover of the Book</label>
+                <label class="text-info" for="inputAddress2">រូប​សៀវភៅ</label>
 
                 <div class="custom-file">
-                  <label for="validatedCustomFile">Add Cover of the Book</label>
+                  <label class="text-info" for="validatedCustomFile">Add Cover of the Book</label>
                   <input type="file" name="bookCoverImg" class="custom-file-input" id="validatedCustomFile" required>
-                  <label class="custom-file-label" for="validatedCustomFile">Choose book cover file...</label>
+                  <label class="custom-file-label" for="validatedCustomFile">Choose book cover
+                    file...</label>
                   <div class="invalid-feedback">Example invalid custom file feedback</div>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="inputAddress2">Book Description</label>
+              <label class="text-info" for="inputAddress2">ពិពណ៌នា​សៀវភៅ</label>
               <textarea type="text" name="bookDescription" class="form-control" id="inputAddress2" placeholder="Enter a short Description about the book."></textarea>
             </div>
 
         </div>
         <div class="card-footer">
-          <button type="submit" class="btn btn-primary"><i class="far fa-address-book"></i> Add Song Book</button>
-          <a href="/book" class="btn btn-primary float-right"><i class="fas fa-backward"></i> Back</a>
+          <button type="submit" class="btn btn-primary float-right">
+            <!-- <i class="far fa-address-book"></i>--><i class="fas fa-plus"></i></button>
+          <a href="/book" class="btn btn-primary "><i class="fas fa-backward"></i></a>
           </form>
         </div>
       </div>

@@ -54,7 +54,7 @@ router.get('/', async function(req, res, next) {
 });
 // Get NEW BOOK FORM
 router.get('/new', isLoggedIn, function(req, res, next) {
-  res.render('newbook', { title: 'Music Sheets' });
+  res.render('newbook', { newbook: 'true' });
 });
 // POST NEW BOOK
 router.post('/', isLoggedIn, upload.single('bookCoverImg'), function(
@@ -62,12 +62,12 @@ router.post('/', isLoggedIn, upload.single('bookCoverImg'), function(
   res,
   next
 ) {
-  //Add user who add book
+  //Add user who add book to songBook document
   var user = {
     id: req.user._id,
     username: req.user.username
   };
-  console.log(`User is ${user._id} and ${user.username}`);
+
   var songbook = new Songbook({
     bookName: req.body.bookName,
     numberOfSong: req.body.numberOfSong,
@@ -82,10 +82,14 @@ router.post('/', isLoggedIn, upload.single('bookCoverImg'), function(
   songbook
     .save()
     .then(() => {
+      req.flash('success', `បញ្ជូល​សៀវភៅ ${songbook.bookName} បានដោយ​ជោគ​ជ័យ!`);
       res.redirect('/book');
     })
-    .catch(() => {
-      res.render('newbook.ejs', { title: 'Something Wrong...' });
+    .catch(err => {
+      if (err) {
+        req.flash('error', `មិន​អាច​បញ្ជូលសៀវភៅ${songbook.bookName}​បាន​ទេ!`);
+        res.render('newbook.ejs');
+      }
     });
 });
 // Get book to update
@@ -96,7 +100,7 @@ router.get('/:bid/edit', isLoggedIn, isAdmin, function(req, res, next) {
     .exec()
     .then(book => {
       if (book !== null) {
-        res.render('bookEdit.ejs', { book: book });
+        res.render('bookEdit.ejs', { book: book, newbook: 'true' });
       } else {
         res.redirect('/book');
       }
@@ -108,29 +112,28 @@ router.get('/:bid/edit', isLoggedIn, isAdmin, function(req, res, next) {
 
 //Get all Songs from a book
 router.get('/:bid/song', async function(req, res, next) {
+  //Convert book ID ot ObjectId first otherwise it won't work
   const bookId = mongoose.Types.ObjectId(req.params.bid);
-  console.log(`Book Id to get song from ${typeof bookId}`);
-  var songBook = await Songbook.findOne({ _id: bookId }).select('bookName');
-  // console.log(`Book --> ${songBook}`);
-  var songLists = await Songlist.find({ 'book.id': bookId }).sort({
+  const page_title = await Songbook.findOne({ _id: bookId });
+  //Find all songs from a specific book using book.id that is embedded in song documents then
+  //order found songs by song Id by setting songId:1
+  var songLists = await Songlist.find({ 'book._id': bookId }).sort({
     songId: 1
   });
-  console.log(`Song list--> ${songLists.length}`);
+  // console.log(`Song list--> ${songLists.length}`);
   if (songLists.length <= 0) {
     res.render('songlist.ejs', {
-      // book_Id: book._id,
       songlists: songLists,
-      // songBook: songBook.bookName,
       isUser: req.user,
-      showmore: false
+      page_title: page_title.bookName,
+      showmore: false //For Pagination option
     });
   } else {
     res.render('songlist.ejs', {
-      // book_Id: book._id,
       songlists: songLists,
-      // songBook: songBook.bookName,
+      page_title: page_title.bookName,
       isUser: req.user,
-      showmore: false
+      showmore: false //For Pagination option
     });
   }
 });
@@ -170,46 +173,50 @@ router.put('/:bid', isLoggedIn, function(req, res, next) {
 // DELETE Song Book
 router.delete('/:bid', isLoggedIn, isAdmin, function(req, res, next) {
   const bookIdToDelete = req.params.bid;
-
-  // Find one book that match to delete
+  // Find one book that match the ID to delete
   Songbook.findOneAndDelete({ _id: bookIdToDelete })
     .exec()
     .then(deletedBook => {
       //If no book to be deleted.
       if (deletedBook === undefined) {
-        res.render('index', {
-          title: 'Select your book.',
-          subtitle: 'No book was deleted!'
-        });
+        req.flash('error', 'No books were deleted');
+        res.render('back');
       } else {
-        //Find and Remove all songs that are associated with that deleting book
-        Songlist.deleteMany({
-          book: bookIdToDelete
-        })
-          .then(results => {
-            if (results.length === undefined) {
-              // console.log("No songs to delete.");
-            } else {
-              console.log(
-                `${results.length} songs is deleted along with the book.`
-              );
-            }
-          })
-          .catch(err => {
-            if (err) throw err;
-          });
-        // console.log(allSongInBook);
         //Remove book Cover for Uploads folder
         fs.unlink(deletedBook.bookCoverImg, err => {
           if (err) {
-            // console.log('File does not exist');
-            req.flash('error', 'Oop! Something wrong');
-            res.redirect('/book');
-          } else {
-            // console.log(`successfully delted ${deletedBook.bookCoverImg}`);
-            res.redirect('/book');
+            console.log('Cover file does not exist');
           }
         });
+        //Find and Remove all songs that are associated with that book
+        Songlist.deleteMany({
+          'book.id': bookIdToDelete
+        })
+          .then(results => {
+            if (results.deletedCount > 0) {
+              req.flash(
+                'success',
+                `សៀវភៅ ${deletedBook.bookName} is deleted and ${
+                  results.deletedCount
+                } songs is deleted along with the book.`
+              );
+              res.redirect('back');
+            } else {
+              req.flash(
+                'success',
+                `សៀវភៅ ${deletedBook.bookName} is deleted and there is ${
+                  results.deletedCount
+                } song to delete.`
+              );
+              res.redirect('/book');
+            }
+          })
+          .catch(err => {
+            if (err) {
+              console.log(err);
+              res.redirect('/book');
+            }
+          });
       }
     })
     .catch(err => {

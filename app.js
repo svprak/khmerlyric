@@ -13,7 +13,10 @@ const flash = require('connect-flash');
 
 const User = require('./models/user');
 
-const dbUrl = process.env.DATABASEURL;
+const dbUrl =
+  process.env.DATABASEURL ||
+  'mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true';
+
 // Connect to local Server
 mongoose.connect(dbUrl, { useNewUrlParser: true }).then(
   function() {
@@ -24,20 +27,10 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }).then(
   }
 );
 
+// Connect to local Server
+mongoose.connect(dbUrl, { useNewUrlParser: true });
+
 // // Connect to Altast server
-// mongoose
-//   .connect(
-//     'mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true',
-//     { useNewUrlParser: true }
-//   )
-//   .then(
-//     function() {
-//       console.log('DB is connected successfully');
-//     },
-//     function(err) {
-//       console.log('Something wrong cannot make the connection to DB');
-//     }
-//   );
 
 //var usersRouter = require('./routes/users');
 
@@ -81,6 +74,8 @@ app.use(function(req, res, next) {
   // res.locals.isAdmin = req.user.role.admin;
   res.locals.error = req.flash('error');
   res.locals.success = req.flash('success');
+  res.locals.newbook = 'false';
+  res.locals.page_title = 'សូម​សរសើរ​នាម​ទ្រង់';
   // console.log(res.locals.isUser);
 
   next();
@@ -98,7 +93,7 @@ app.use('/uploads', express.static('uploads'));
 app.use('/', indexRouter);
 app.use('/book', bookRouter);
 app.use('/song', songRouter);
-app.use('/', usersRouter);
+app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -110,7 +105,6 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
   // render the error page
   res.status(err.status || 500);
   res.render('error');

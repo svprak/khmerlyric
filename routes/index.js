@@ -8,36 +8,64 @@ var Songlist = require('../models/songlists');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
+  let page = req.query.page || 1;
+  let prev = req.query.prev || 1;
+  let isEnd = false;
+  page = parseInt(page);
+  prev = parseInt(prev);
+  const limit = 25;
+  let pageStart = page;
+  let lastPage = 3 + pageStart;
+
   try {
     var songBook = await Songbook.find();
-    // console.log(`songbook ${songBook}`);
     if (songBook.length <= 0) {
-      res.redirect('/book');
+      req.flash('error', 'No songbook');
+      res.render('404.ejs');
     } else {
-      var songLists = await Songlist.find().sort({
-        songId: 1
-      });
-      // console.log(songLists);
+      var songLists = await Songlist.find()
+        .skip(page > 0 ? (page - 1) * limit : 0)
+        .limit(limit);
+
+      if (songLists.length < limit) {
+        isEnd = true;
+      } else {
+        if (pageStart == prev) {
+          prev = pageStart;
+        } else {
+          prev = pageStart + 1;
+        }
+      }
       if (songLists.length > 0) {
-        // console.log(songBook);
-        res.render('index.ejs', {
-          // book_Id: book._id,
+        res.render('songlist.ejs', {
           songlists: songLists,
-          songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា'
+          songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
+          pageStart: pageStart,
+          lastPage: lastPage,
+          count: prev,
+          isEnd: isEnd,
+          showmore: true
         });
       } else {
-        // console.log(songLists.length);
-        res.render('index.ejs', {
+        page = prev;
+        res.render('songlist.ejs', {
           // book_Id: book._id,
           songlists: songLists,
-          songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា'
+          songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
+          pageStart: pageStart,
+          lastPage: lastPage,
+          count: prev,
+          isEnd: isEnd,
+          showmore: true
         });
       }
     }
   } catch (err) {
-    throw err;
+    req.flash('error', err.message);
+    console.log(err);
   }
 });
+
 // Search for song by title
 router.get('/search', (req, res, next) => {
   var searchKeyword = req.query.searchTerm || '';

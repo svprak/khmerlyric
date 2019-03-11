@@ -1,6 +1,6 @@
 module.exports = function(req, res, next) {
   if (req.isAuthenticated() && req.user.role.admin == true) {
-    return next();
+    return next(); //
   }
   req.flash(
     'error',

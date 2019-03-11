@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
     crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Khmer" rel="stylesheet" />
@@ -14,9 +15,10 @@
     crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Battambang|Metal|Kdam+Thmor|Khmer|Content|Koulen|Moul|Nokora|Taprom&amp;subset=khmer"
     rel="stylesheet" />
+  <link rel="icon" href="../../favico/favicon.ico">
   <link rel="stylesheet" href="../../css/style.css" />
   <title>
-    Music Sheets
+    <%= page_title %>
   </title>
   <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
@@ -37,6 +39,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/song">ចម្រៀង</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">BLOG</a>
+          </li>
           <% if(isUser) { %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -48,7 +53,7 @@
               <a class="dropdown-item" href="/song/new">ថែម​បទថ្មី</a>
               <% if(isUser && isUser.role.admin){%>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/register">ចុះ​ឈ្មោះ</a>
+              <a class="dropdown-item" href="/user/register">ចុះ​ឈ្មោះ</a>
               <%}%>
             </div>
           </li>
@@ -64,11 +69,11 @@
             </a>
           </li>
           <li class="nav-item sign-out">
-            <a class="nav-link" href="/logout"><i class="fas fa-unlock"></i><i class="fas fa-lock "></i></a>
+            <a class="nav-link" href="/user/logout"><i class="fas fa-unlock"></i><i class="fas fa-lock "></i></a>
           </li>
           <%} else { %>
           <li class="nav-item lock">
-            <a class="nav-link" href="/login">
+            <a class="nav-link" href="/user/login">
               <i class="fas fa-unlock"></i><i class="fas fa-lock "></i>
             </a>
           </li>
@@ -83,6 +88,7 @@
       </div>
     </div>
   </nav>
+  <% if(newbook !== "true") { %>
   <section id="search-box">
     <div class="container">
       <div class="row">
@@ -93,7 +99,7 @@
                 <input type="search" name="searchTerm" class="form-control" placeholder="song title | song id | band | author" />
               </div>
               <div class="col">
-                <button type="submit" class="btn btn-primary ">Submit</button>
+                <button type="submit" class="btn btn-primary "><i class="fas fa-search"></i></button>
               </div>
             </div>
           </form>
@@ -101,6 +107,7 @@
       </div>
     </div>
   </section>
+  <%}%>
   <% if(error && error.length>0) { %>
   <div class="text-center alert alert-danger">
     <%= error %>

@@ -1,15 +1,15 @@
 <% include partials/header.ejs %>
 <div class="container">
-  <h1 class="mt-5">
-    <%= title %>
-  </h1>
-  <p>Welcome to
-    <%= title %>
-  </p>
-  <hr>
-  <div class="row">
+  <div class="row mt-5">
     <div class="col-md-lg">
       <h3>404 - Not Found!</h3>
+      <h1>
+        <%= message %>
+      </h1>
+      <h2>
+        <%= error.status %>
+      </h2>
+      <pre><%= error.stack %></pre>
     </div>
   </div>
 </div>
