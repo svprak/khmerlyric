@@ -14,7 +14,7 @@ const flash = require('connect-flash');
 const User = require('./models/user');
 
 const dbUrl =
-  process.env.DATABASEURL ||
+  process.env.DATABASEURL1 ||
   'mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true';
 
 // Connect to local Server
@@ -31,7 +31,6 @@ mongoose.connect(dbUrl, { useNewUrlParser: true }).then(
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 
 // // Connect to Altast server
-
 //var usersRouter = require('./routes/users');
 
 var app = express();
@@ -45,7 +44,7 @@ var songRouter = require('./routes/songs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
+app.use(logger('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -108,16 +107,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+  console.log(err);
 });
-
-// // production error handler
-// // no stacktraces leaked to user
-// app.use(function (err, req, res, next) {
-//   res.status(err.status || 500);
-//   res.render('error', {
-//     message: err.message,
-//     error: {}
-//   });
-// });
 
 module.exports = app;

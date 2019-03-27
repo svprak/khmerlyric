@@ -2,7 +2,7 @@
 <div class="container">
   <section id="lyric">
     <div class="row  mt-5">
-      <div class="fontForSongLyric col-md-7 col-sm-12">
+      <div class="fontForSongLyric col-lg-7 col-md-12 col-sm-12">
         <h1 class="title-size-2">
           <%= song.songTitleKh %>
         </h1>
@@ -26,23 +26,23 @@
           </div>
           <div class="col-md-6 ">
             <% if(isUser) {%> &nbsp;&nbsp;
-            <a class="print-button btn btn-primary btn-sm float-right" href="/song/<%= song._id %>/edit"><i class="far fa-edit"></i>
+            <a class="print-button btn btn-primary btn-sm float-right" href="/song/<%= song._id %>/edit"><i
+                class="far fa-edit"></i>
               Edit</a>
             <% } %>
           </div>
         </div>
       </div>
-      <div id="randomSongTitle" class="col-md-5 mt-5">
+      <div id="randomSongTitle" class="col-lg-5 col-md-12 mt-5">
         <div class="card">
           <div class="card-header">
-            <p class="taprom-font mb-0">បទចម្រៀង​ផ្សេងៗ​ទៀត</p>
+            <p class="fontForSongLyric mb-0">បទចម្រៀង​ផ្សេងៗ​ទៀត</p>
           </div>
           <div class="card-body">
             <% songTitles.forEach((title)=>{ %>
             <p class="card-text font-small">
               <a href="/song/<%=title._id %>">
-                <%= title.songTitleKh %></a><span class="text-muted float-right">
-                ក្នុង​សៀវភៅ
+                <%= title.songTitleKh %></a><span class="fontForSongLyric text-muted float-right">
                 <%= title.book.bookName %> #
                 <%=
                 parseInt(title.songId) %>

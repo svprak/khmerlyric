@@ -24,6 +24,7 @@ router.get('/', async function(req, res, next) {
       res.render('404.ejs');
     } else {
       var songLists = await Songlist.find()
+        .sort({ songTitleKh: 1 })
         .skip(page > 0 ? (page - 1) * limit : 0)
         .limit(limit);
 
@@ -37,7 +38,7 @@ router.get('/', async function(req, res, next) {
         }
       }
       if (songLists.length > 0) {
-        res.render('songlist.ejs', {
+        res.render('index.ejs', {
           songlists: songLists,
           songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
           pageStart: pageStart,
@@ -107,5 +108,4 @@ router.get('/search', (req, res, next) => {
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
-
 module.exports = router;

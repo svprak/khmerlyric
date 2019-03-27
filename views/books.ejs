@@ -11,14 +11,14 @@
   <hr />
   <div class="row">
     <div class="col-md-12">
-      <p class="bookTitle-1">
+      <p class="book-title-3">
         No book is available to select.
         <a href="/book/new">Add new song book?</a>
       </p>
     </div>
   </div>
   <% } else { %>
-  <h1 class="mt-5 title-size-2">
+  <h1 class="mt-5 content-font">
     សៀវភៅចម្រៀងសរសើរ​ព្រះ​ជា​ខេមរភាសាមាន
     <%= bookCount %> ក្បាល
   </h1>
@@ -30,7 +30,7 @@
     <div class="col-md-2">
       <div class="card mb-4">
         <a class="link" href="/book/<%= songbook._id %>/song">
-          <img src="<%= songbook.bookCoverImg %>" class="card-img-top img-fluid" alt="..." /></a>
+          <img src="<%= songbook.bookCoverImg %>" class="card-img-top img-fluid" alt="<%= songbook.bookName %>" /></a>
         <div class="card-body content-font p-2">
           <h5 class="card-title descrition pt-2">
             <a class="link" href="/book/<%= songbook._id %>/song">
@@ -38,17 +38,10 @@
           </h5>
           <ul class="listbook descrition text-muted">
             <li>
-              ចំនួន​បទ​ចម្រៀង:
-              <%= songbook.numberOfSong %>
+              មាន:
+              <%= songbook.numberOfSong %>​ បទ
             </li>
-            <li>
-              បោះពុម្ភ:
-              <%= songbook.bookYear %>
-            </li>
-            <li>
-              ផលិតដោយ:
-              <%= songbook.bookBy %>
-            </li>
+            ​
           </ul>
           <!-- <p class="card-text">
             <%- songbook.bookDescription.slice(0,125) %>...
@@ -69,6 +62,6 @@
       </div>
     </div>
     <% }) } %>
-  </div>
-  <% include partials/footer.ejs %>
-</div>
+        </div>
+        <% include partials/footer.ejs %>
+      </div>

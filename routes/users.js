@@ -51,6 +51,7 @@ router.post(
     failureRedirect: '/user/login'
   }),
   function(req, res) {
+    req.flash('success', `Hello `);
     res.redirect('/');
   }
 );
@@ -65,5 +66,4 @@ router.get('/logout', function(req, res) {
     res.redirect('/');
   }
 });
-
 module.exports = router;
