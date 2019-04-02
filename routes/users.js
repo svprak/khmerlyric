@@ -55,4 +55,12 @@ router.post(
     res.redirect('/');
   }
 );
+
+// LOG OUT
+router.get('/logout', function(req, res) {
+  req.logout();
+  req.flash('error', 'ចាក​ចេញ​បាន​សម្រេចហើយ!!!');
+  res.redirect('/');
+});
+
 module.exports = router;
