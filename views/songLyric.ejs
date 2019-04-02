@@ -18,7 +18,7 @@
           <div class="col-md-6 ">
             <!-- <a href="#"><i class="fas fa-print"></i>Crtl + P</a> &nbsp; -->
             <button class="print-button btn btn-success btn-sm" onclick="printLyric()">
-              Print Song
+              <i class="fas fa-print"></i> Print
             </button>
             &nbsp;&nbsp;<a class="print-button btn btn-primary btn-sm" href="/song"><i class="fas fa-backward"></i>
               Back</a>
@@ -40,15 +40,14 @@
           </div>
           <div class="card-body">
             <% songTitles.forEach((title)=>{ %>
-            <p class="card-text font-small">
+            <p class="card-text font-small content-font">
               <a href="/song/<%=title._id %>">
-                <%= title.songTitleKh %></a><span class="fontForSongLyric text-muted float-right">
+                <%= title.songTitleKh %></a><span class="text-muted float-right">
                 <%= title.book.bookName %> #
                 <%=
                 parseInt(title.songId) %>
               </span>
             </p>
-
             <% }) %>
           </div>
         </div>

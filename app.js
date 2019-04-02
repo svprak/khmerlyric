@@ -2,13 +2,13 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-var methodOverride = require('method-override');
-var passport = require('passport');
-var LocalStrategy = require('passport-local');
-var passportLocalMongoose = require('passport-local-mongoose');
+const methodOverride = require('method-override');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const passportLocalMongoose = require('passport-local-mongoose');
 const flash = require('connect-flash');
 
 const User = require('./models/user');
@@ -18,22 +18,12 @@ const dbUrl =
   'mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true';
 
 // Connect to local Server
-mongoose.connect(dbUrl, { useNewUrlParser: true }).then(
-  function() {
-    console.log(`Local DB is connected successfully.`);
-  },
-  function(err) {
-    console.log(`Something wrong ${err}`);
-  }
-);
-
-// Connect to local Server
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 
 // // Connect to Altast server
 //var usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 
 // Bring in Router
 var usersRouter = require('./routes/users');
@@ -52,7 +42,7 @@ app.use(flash());
 //Express-session Configuration//////
 app.use(
   require('express-session')({
-    secret: 'This line can be anything you want to put. It would be fine.',
+    secret: 'Ut justo sem, pharetra sit amet convallis id, aliquet a augue.',
     resave: false,
     saveUninitialized: false
   })
@@ -76,7 +66,6 @@ app.use(function(req, res, next) {
   res.locals.newbook = 'false';
   res.locals.page_title = 'សូម​សរសើរ​នាម​ទ្រង់';
   // console.log(res.locals.isUser);
-
   next();
 });
 
@@ -107,7 +96,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-  console.log(err);
+  // console.log(err);
 });
 
 module.exports = app;

@@ -26,7 +26,7 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
     }
     req.logOut();
     passport.authenticate('local')(req, res, function() {
-      req.flash('success', 'Welcome to Music Sheet ' + user.username);
+      req.flash('success', 'សួរស្តី' + user.username);
       // console.log(user);
       res.redirect('/book');
     });
@@ -37,7 +37,7 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
 router.get('/login', (req, res, next) => {
   // console.log(req.flash('error'));
   if (req.user) {
-    req.flash('error', 'you are already logged in.');
+    req.flash('error', 'លោក​កំពុង​នៅ​ក្នុង​ប្រពន្ធ័​ហើយ​ពេល​នេះ');
     res.redirect('/');
   } else {
     res.render('login.ejs');
@@ -51,7 +51,7 @@ router.post(
     failureRedirect: '/user/login'
   }),
   function(req, res) {
-    req.flash('success', `Hello `);
+    req.flash('success', `សួរស្តីី`);
     res.redirect('/');
   }
 );
@@ -60,7 +60,7 @@ router.get('/logout', function(req, res) {
   if (req.user) {
     // console.log(req.user);
     req.logout();
-    req.flash('success', 'Logged out successfully!');
+    req.flash('success', 'ចាក​ចេញ​បាន​សម្រេច!');
     res.redirect('/');
   } else {
     res.redirect('/');

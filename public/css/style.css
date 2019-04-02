@@ -1,366 +1,346 @@
- body {
-   background: #ffffff;
-   font-family: 'Content', Verdana;
- }
+body {
+  background: #ffffff;
+  font-family: 'Content', Verdana;
+}
 
- #landing-page::after {
-   content: '';
-   /* background: url("https://source.unsplash.com/collection/952655/1600x900"); */
-   /* Cambodia */
-   /* background: url("https://source.unsplash.com/collection/970826/1600x900"); */
-   /* Worship */
-   /* background: url("https://source.unsplash.com/collection/2434997/1600x900"); */
-   /* Cambodia */
-   background: url('https://source.unsplash.com/user/svprak/1920x1080');
-   /* SVPRAK*/
-   /* background: url("https://source.unsplash.com/collection/2237674/1600x900"); */
-   /* Cambodia Project */
+#landing-page::after {
+  content: '';
+  background: url('https://source.unsplash.com/user/svprak/1920x1080');
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}
 
-   opacity: 0.5;
-   top: 0;
-   left: 0;
-   bottom: 0;
-   right: 0;
-   position: absolute;
-   z-index: -1;
- }
+.chord {
+  color: red;
+}
 
- .chord {
-   color: red;
- }
+.search-box-center {
+  margin-top: 350px;
+}
 
- .search-box-center {
-   margin-top: 350px;
- }
+.login-box-center {
+  margin-top: 110px;
+}
 
- .login-box-center {
-   margin-top: 110px;
- }
+tr a.view-song {
+  display: none;
+}
 
- tr a.view-song {
-   display: none;
+tr:hover a.view-song {
+  display: inline-block;
+}
 
- }
+.table-head-font {
+  font-family: 'Khmer', Sans-serif;
+}
 
- tr:hover a.view-song {
-   display: inline-block;
+.content-font {
+  font-family: 'Khmer', Sans-serif;
+}
 
- }
+.fontForSongLyric {
+  font-family: 'Khmer', Sans-serif;
+  font-size: 1em;
+}
 
- .table-head-font {
-   font-family: 'Khmer',
-     Sans-serif;
- }
+.metalFont {
+  font-family: 'Metal', Sans-serif;
+}
 
- .content-font {
-   font-family: 'Khmer',
-     Sans-serif;
- }
+.bookTitle-1 {
+  font-family: 'Khmer', Sans-serif;
+  font-size: 1.5em;
+}
 
- .fontForSongLyric {
-   font-family: 'Khmer', Sans-serif;
-   font-size: 1em;
- }
+#randomSongTitle {
+  font-size: 0.8em;
+  color: red;
+}
 
- .metalFont {
-   font-family: 'Metal', Sans-serif;
- }
+.title-size-1 {
+  font-family: 'Khmer', cursive;
+  font-size: 1em;
+}
 
- .bookTitle-1 {
-   font-family: 'Moul', Sans-serif;
-   font-size: 1.5em;
- }
+.title-size-6 {
+  font-family: 'Khmer', cursive;
+  font-size: 6em;
+}
 
- #randomSongTitle {
-   font-size: 0.8em;
-   color: red;
- }
+.title-size-2 {
+  font-family: 'Khmer', cursive;
+  font-size: 1.7em;
+  margin-bottom: 25px;
+}
 
- .title-size-1 {
-   font-family: 'Moul', cursive;
-   font-size: 1em;
- }
+.title-size-3 {
+  font-family: 'Khmer', cursive;
+  font-size: 3em;
+}
 
- .title-size-6 {
-   font-family: 'Moul', cursive;
-   font-size: 6em;
- }
+.title-size-4 {
+  font-family: 'Khmer', cursive;
+  font-size: 4em;
+}
 
- .title-size-2 {
-   font-family: 'Moul', cursive;
-   font-size: 1.7em;
-   margin-bottom: 25px;
- }
+.heading-font {
+  font-family: 'Khmer', cursive;
+  font-size: 1.2em;
+  font-weight: bold;
+}
 
- .title-size-3 {
-   font-family: 'Moul', cursive;
-   font-size: 3em;
- }
+.book-title-3 {
+  font-family: 'Khmer', cursive;
+  font-size: 0.7em;
+}
 
- .title-size-4 {
-   font-family: 'Moul', cursive;
-   font-size: 4em;
- }
+.nokora-font {
+  font-family: 'Nokora', cursive;
+}
 
- .title-size-5 {
-   font-family: 'Moul', cursive;
-   font-size: 5em;
- }
+.listbook {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 10px;
+}
 
- .book-title-3 {
-   font-family: 'Moul', cursive;
-   font-size: 0.7em;
- }
+.found-song-msg {
+  display: inline-block;
+  margin-right: 35px;
+}
 
- .nokora-font {
-   font-family: 'Nokora', cursive;
- }
+a {
+  text-decoration: none;
+}
 
- .listbook {
-   list-style: none;
-   padding-left: 0;
-   margin-bottom: 10px;
- }
+tr a {
+  text-decoration: none;
+  color: rgba(31, 33, 36, 0.863);
+}
 
- .found-song-msg {
-   display: inline-block;
-   margin-right: 35px;
- }
+tr a:hover {
+  text-decoration: underline;
+}
 
- a {
-   text-decoration: none;
- }
+a:hover {
+  text-decoration: none;
+}
 
- tr a {
-   text-decoration: none;
-   color: rgba(31, 33, 36, 0.863);
- }
+a>img:hover {
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
 
- tr a:hover {
-   text-decoration: underline;
- }
+.operation {
+  border-top: 1px solid #c0c0c0;
+  padding-top: 10px;
+}
 
- a:hover {
-   text-decoration: none;
- }
+.descrition {
+  font-size: 0.8em;
+}
 
- a>img:hover {
-   opacity: 0.9;
-   filter: alpha(opacity=90);
- }
+.svp_inputWidth {
+  width: 200px;
+}
 
- .operation {
-   border-top: 1px solid #c0c0c0;
-   padding-top: 10px;
- }
+.table-row-highlight:hover {
+  background: rgb(226, 255, 250);
+}
 
- .descrition {
-   font-size: 0.8em;
- }
+.myForm input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #007bff;
+}
 
- .svp_inputWidth {
-   width: 200px;
- }
+.myForm button {
+  border-radius: 0;
+}
 
- .table-row-highlight:hover {
-   background: rgb(226, 255, 250);
- }
+.search-form input {
+  border: none;
+  border-radius: 0;
+}
 
- .myForm input {
-   border: none;
-   border-radius: 0;
-   border-bottom: 1px solid #007bff;
- }
+.search-form button {
+  border-radius: 0;
+}
 
- .myForm button {
-   border-radius: 0;
- }
+.loginAs {
+  color: red;
+}
 
- .search-form input {
-   border: none;
-   border-radius: 0;
+li i.fa-unlock {
+  display: none;
+}
 
- }
+li:hover i.fa-unlock {
+  display: block;
+  color: #fff;
+}
 
- .search-form button {
-   border-radius: 0;
- }
+li:hover i.fa-lock {
+  display: none;
+}
 
+li i.fa-lock {
+  display: block;
+  position: absolute;
+  color: rgba(38, 43, 48, 0.5);
+}
 
- .loginAs {
-   color: red;
- }
+.lock {
+  margin-left: 800px;
+}
 
- li i.fa-unlock {
-   display: none;
- }
+.sign-out i.fa-lock {
+  display: none;
+}
 
- li:hover i.fa-unlock {
-   display: block;
-   color: #fff;
- }
+.sign-out:hover i.fa-lock {
+  display: block;
+  color: #fff;
+}
 
- li:hover i.fa-lock {
-   display: none;
- }
+.sign-out:hover i.fa-unlock {
+  display: none;
+}
 
- li i.fa-lock {
-   display: block;
-   position: absolute;
-   color: rgba(38, 43, 48, 0.5);
- }
+.sign-out i.fa-unlock {
+  display: block;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.9);
+}
 
- .lock {
-   margin-left: 800px;
- }
+.warning {
+  color: red;
+}
 
- .sign-out i.fa-lock {
-   display: none;
- }
+#delete-form {
+  display: inline;
+}
 
- .sign-out:hover i.fa-lock {
-   display: block;
-   color: #fff;
- }
+.search-btn {
+  display: inline;
+}
 
- .sign-out:hover i.fa-unlock {
-   display: none;
- }
-
- .sign-out i.fa-unlock {
-   display: block;
-   position: absolute;
-   color: rgba(255, 255, 255, 0.9);
- }
-
- .warning {
-   color: red;
- }
-
- #delete-form {
-   display: inline;
- }
-
- .search-btn {
-   display: inline;
- }
-
- #search-box {
-   height: 130px;
-   /* background: rgba(6, 41, 243, 0.966); */
-   /* background-image: linear-gradient(rgba(255, 255, 255, 0.5),
-    rgba(0, 0, 224, 1)); */
-   /* background: #457fca;
+.bg-search-box {
+  background: #74ebd5;
   /* fallback for old browsers */
-   /* background: -webkit-linear-gradient(to bottom, #5691c8, #457fca); */
-   /* Chrome 10-25, Safari 5.1-6 */
-   /* background: linear-gradient(to bottom, #5691c8, #457fca); */
-   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-   background: #74ebd5;
-   /* fallback for old browsers */
-   background: -webkit-linear-gradient(to right, #ACB6E5, #74ebd5);
-   /* Chrome 10-25, Safari 5.1-6 */
-   background: linear-gradient(to right, #ACB6E5, #74ebd5);
-   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #acb6e5, #74ebd5);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #acb6e5, #74ebd5);
+}
 
-   /* background-image: url("https://source.unsplash.com/collection/179297/1600x130"); */
+.bg-footer {
+  background: #457fca;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #5691c8, #457fca);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #5691c8, #457fca);
+}
 
- }
+#main-footer {
+  /* background: rgba(255, 254, 253, 0.966); */
+  color: #b4b4b4;
+}
 
- #main-footer {
-   /* background: rgba(255, 254, 253, 0.966); */
-   color: #fff;
- }
-
- /* .img-hover:hover {
+/* .img-hover:hover {
   border-bottom: 2px solid rgba(0, 17, 250, 0.849);
 } */
 
- /* TOOL TIPS */
- /* Tooltip container */
- .tooltip {
-   position: relative;
-   display: inline-block;
-   border-bottom: 1px dotted black;
-   /* If you want dots under the hoverable text */
- }
+/* TOOL TIPS */
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+  /* If you want dots under the hoverable text */
+}
 
- /* Tooltip text */
- .tooltip .tooltiptext {
-   visibility: hidden;
-   width: 120px;
-   background-color: black;
-   color: #fff;
-   text-align: center;
-   padding: 5px 0;
-   border-radius: 6px;
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
 
-   /* Position the tooltip text - see examples below! */
-   position: absolute;
-   z-index: 1;
- }
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
 
- /* Show the tooltip text when you mouse over the tooltip container */
- .tooltip:hover .tooltiptext {
-   visibility: visible;
- }
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
 
- @media screen and (max-width: 992px) {}
+/* Print Stylesheet */
+@media print {
+  * {
+    margin: 0;
+    color: #000;
+    box-shadow: none;
+    text-shadow: none;
+    background: transparent !important;
+  }
 
- /* Print Stylesheet */
- @media print {
-   * {
-     margin: 0;
-     color: #000;
-     box-shadow: none;
-     text-shadow: none;
-     background: transparent !important;
-   }
+  #randomSongTitle,
+  .chord,
+  a,
+  hr,
+  .print-button,
+  header,
+  #search-box,
+  .bg-search-box,
+  footer {
+    display: none;
+  }
 
-   #randomSongTitle,
-   .chord,
-   a,
-   hr,
-   .print-button,
-   header,
-   #search-box,
-   footer {
-     display: none;
-   }
+  #lyric {
+    font-size: 1.2em;
+    width: 100%;
+  }
 
-   #lyric {
-     font-size: 1.2em;
-     width: 100%;
-   }
+  @page {
+    margin: 2cm;
+  }
 
-   @page {
-     margin: 2cm;
-   }
+  @page: first {
+    margin: 0cm;
+  }
 
-   @page: first {
-     margin: 0cm;
-   }
+  @page: last {
+    margin: 5cm;
+  }
 
-   @page: last {
-     margin: 5cm;
-   }
+  @page: left {
+    margin: 2cm 1.5cm 2cm 2cm;
+  }
 
-   @page: left {
-     margin: 2cm 1.5cm 2cm 2cm;
-   }
+  @page: right {
+    margin: 2cm 2cm 2cm 1.5cm;
+  }
 
-   @page: right {
-     margin: 2cm 2cm 2cm 1.5cm;
-   }
+  article {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 1.5em !important;
+  }
 
-   article {
-     width: 100% !important;
-     padding: 0 !important;
-     margin: 0 !important;
-     font-size: 1.5em !important;
-   }
+  a:after {
+    content: '('attr(href) ')';
+  }
+}
 
-   a:after {
-     content: '('attr(href) ')';
-   }
- }
+/* Khmer Unicode font face - from Angkor Nation */
