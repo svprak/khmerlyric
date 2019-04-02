@@ -55,15 +55,4 @@ router.post(
     res.redirect('/');
   }
 );
-// LOGIN OUT
-router.get('/logout', function(req, res) {
-  if (req.user) {
-    // console.log(req.user);
-    req.logout();
-    req.flash('success', 'ចាក​ចេញ​បាន​សម្រេច!');
-    res.redirect('/');
-  } else {
-    res.redirect('/');
-  }
-});
 module.exports = router;
