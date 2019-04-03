@@ -44,6 +44,7 @@ router.get('/', async function(req, res, next) {
           isEnd: isEnd,
           showmore: true
         });
+      
       } else {
         page = prev;
         res.render('songlist.ejs', {
@@ -54,6 +55,7 @@ router.get('/', async function(req, res, next) {
           isEnd: isEnd,
           showmore: true
         });
+     
       }
     }
   } catch (err) {
