@@ -122,14 +122,14 @@ router.get('/:bid/song', async function(req, res, next) {
   });
   // console.log(`Song list--> ${songLists.length}`);
   if (songLists.length <= 0) {
-    res.render('songlist.ejs', {
+    res.render('songlister.ejs', {
       songlists: songLists,
       isUser: req.user,
       page_title: page_title.bookName,
       showmore: false //For Pagination option
     });
   } else {
-    res.render('songlist.ejs', {
+    res.render('songlister.ejs', {
       songlists: songLists,
       page_title: page_title.bookName,
       isUser: req.user,
