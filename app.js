@@ -14,7 +14,7 @@ const flash = require('connect-flash');
 const User = require('./models/user');
 
 const dbUrl =
-  process.env.DATABASEURL1 ||
+  process.env.DATABASEURL ||
   'mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true';
 
 // Connect to local Server
@@ -30,6 +30,7 @@ var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
 var bookRouter = require('./routes/books');
 var songRouter = require('./routes/songs');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

@@ -37,7 +37,7 @@ router.get('/', async function(req, res, next) {
         }
       }
       if (songLists.length > 0) {
-        res.render('songlist.ejs', {
+        res.render('songlister', {
           songlists: songLists,
           pageStart: pageStart,
           count: prev,
@@ -47,7 +47,7 @@ router.get('/', async function(req, res, next) {
       
       } else {
         page = prev;
-        res.render('songlist.ejs', {
+        res.render('songlister', {
           // book_Id: book._id,
           songlists: songLists,
           pageStart: pageStart,
