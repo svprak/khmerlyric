@@ -14,9 +14,7 @@ const flash = require('connect-flash');
 const User = require('./models/user');
 
 const dbUrl =
-  process.env.DATABASEURL ||
-  'mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true';
-
+  process.env.DATABASEURL 
 // Connect to local Server
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 
