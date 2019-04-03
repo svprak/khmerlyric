@@ -79,7 +79,8 @@ router.get('/search', (req, res, next) => {
       { songTitleEn: regex },
       { songBook: regex },
       { songBy: regex },
-      { songId: regex }
+      { songId: regex },
+      { songLyric: regex }
     ]
   })
     .select('_id songId songTitleKh songTitleEn songBy songBook book')

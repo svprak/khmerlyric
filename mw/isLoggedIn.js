@@ -3,6 +3,6 @@ module.exports = function(req, res, next) {
     // console.log(`isAdmin: ${req.user.role.admin}`);
     return next();
   }
-  req.flash('error', 'Please Login!!!');
+  req.flash('error', 'សូម​ចូល​ក្នុង​ប្រពន្ធ័ជា​មុន​សិន!!!');
   res.redirect('/user/login');
 };
