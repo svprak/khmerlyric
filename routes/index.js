@@ -77,10 +77,10 @@ router.get('/search', (req, res, next) => {
     $or: [
       { songTitleKh: regex },
       { songTitleEn: regex },
-      { songBook: regex },
-      { songBy: regex },
-      { songId: regex },
-      { songLyric: regex }
+      // { songBook: regex },
+      // { songBy: regex },
+      { songId: regex }
+      // { songLyric: regex }
     ]
   })
     .select('_id songId songTitleKh songTitleEn songBy songBook book')
