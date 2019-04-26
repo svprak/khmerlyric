@@ -44,7 +44,6 @@ router.get('/', async function(req, res, next) {
           isEnd: isEnd,
           showmore: true
         });
-      
       } else {
         page = prev;
         res.render('songlister', {
@@ -55,7 +54,6 @@ router.get('/', async function(req, res, next) {
           isEnd: isEnd,
           showmore: true
         });
-     
       }
     }
   } catch (err) {
@@ -121,14 +119,21 @@ router.post('/', isLoggedIn, async function(req, res, next) {
       .then(() => {
         // console.log(` Book Id: ${bookId} `);
         // console.log(typeof bookId);
-        req.flash('success', `${newSong.songTitleKh} បញ្ជូល​បានដោយ​ជោគ​ជ័យ`);
+        req.flash(
+          'success',
+          `បទលេខ ${newSong.songId} - ${
+            newSong.songTitleKh
+          } បញ្ជូល​បានដោយ​ជោគ​ជ័យ`
+        );
         //Redirect back to add new song page
         res.redirect('/song/new');
       })
       .catch(() => {
         req.flash(
           'error',
-          `Something wrong: ${newSong.songTitleKh} មិនអាច​បញ្ជូល​បានទេ`
+          `Something wrong: បទលេខ ${newSong.songId} - ${
+            newSong.songTitleKh
+          } មិនអាច​បញ្ជូល​បានទេ`
         );
         res.render('newsong.ejs', {
           isUser: req.user
