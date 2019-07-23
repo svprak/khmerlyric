@@ -257,7 +257,7 @@ router.delete('/:sid', isLoggedIn, async (req, res, next) => {
       }
     })
     .catch(err => {
-      req.flash('error', `លប់​បទចម្រៀងបាន​ដោយ​ជោគ​ជ័យ ${err}`);
+      req.flash('error', `មិន​អាចលប់​បទចម្រៀងបាន​ទេ សុំទោស! ${err}`);
       res.redirect('/song');
     });
 });

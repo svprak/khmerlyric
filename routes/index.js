@@ -69,19 +69,33 @@ router.get('/', async function(req, res, next) {
 
 // Search for song by title
 router.get('/search', (req, res, next) => {
-  var searchKeyword = req.query.searchTerm || '';
-  // console.log('In Search ' + typeof searchKeyword);
+  let searchKeyword = req.query.searchTerm || '';
+
+  //Check if the searchKeyword is not number.
+  if (!isNaN(searchKeyword)) {
+    //it runs only if it is number
+    ​ //if searchKeyword === 1 search add 00 to the front of it
+    if (searchKeyword.length === 1) {
+      searchKeyword = '00' + searchKeyword;
+      console.log(`now In Search  ${searchKeyword}`);
+    }
+    //if searchKeyword === 2 search add 0 infront of it
+    if (searchKeyword.length === 2) {
+      searchKeyword = '0' + searchKeyword;
+      console.log(`now In Search  ${searchKeyword}`);
+    }
+  }
+  // //if searchKeyword >= 3 just do the search
+  console.log(`In Search  ${searchKeyword}`);
+ 
+
+  //EscapeRegex first before search to prevent unwanted injection
   const regex = new RegExp(escapeRegex(searchKeyword), 'gi');
 
+  console.log(`Reg is ${regex}`);
+
   Songlist.find({
-    $or: [
-      { songTitleKh: regex },
-      { songTitleEn: regex },
-      // { songBook: regex },
-      // { songBy: regex },
-      { songId: regex }
-      // { songLyric: regex }
-    ]
+    $or: [{ songTitleKh: regex }, { songTitleEn: regex }, { songId: regex }]
   })
     .select('_id songId songTitleKh songTitleEn songBy songBook book')
     .exec()

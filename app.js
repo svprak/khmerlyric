@@ -13,8 +13,7 @@ const flash = require('connect-flash');
 
 const User = require('./models/user');
 
-const dbUrl =
-  process.env.DATABASEURL 
+const dbUrl = process.env.DATABASEURL;
 // Connect to local Server
 mongoose.connect(dbUrl, { useNewUrlParser: true });
 
@@ -38,6 +37,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(flash());
+
 //Express-session Configuration//////
 app.use(
   require('express-session')({
@@ -47,6 +47,7 @@ app.use(
   })
 );
 
+//passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -73,7 +74,7 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Making Uploads available publicly
+//Making Uploads folder available publicly
 app.use('/uploads', express.static('uploads'));
 
 // Router
