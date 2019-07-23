@@ -73,26 +73,18 @@ router.get('/search', (req, res, next) => {
 
   //Check if the searchKeyword is not number.
   if (!isNaN(searchKeyword)) {
-    //it runs only if it is number
-    ​ //if searchKeyword === 1 search add 00 to the front of it
     if (searchKeyword.length === 1) {
       searchKeyword = '00' + searchKeyword;
-      console.log(`now In Search  ${searchKeyword}`);
     }
-    //if searchKeyword === 2 search add 0 infront of it
     if (searchKeyword.length === 2) {
       searchKeyword = '0' + searchKeyword;
-      console.log(`now In Search  ${searchKeyword}`);
     }
   }
-  // //if searchKeyword >= 3 just do the search
-  console.log(`In Search  ${searchKeyword}`);
- 
 
   //EscapeRegex first before search to prevent unwanted injection
   const regex = new RegExp(escapeRegex(searchKeyword), 'gi');
 
-  console.log(`Reg is ${regex}`);
+  // console.log(`Reg is ${regex}`);
 
   Songlist.find({
     $or: [{ songTitleKh: regex }, { songTitleEn: regex }, { songId: regex }]
