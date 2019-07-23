@@ -28,7 +28,7 @@
             <tr class="content-font">
               <th scope="col">#</th>
               <th scope="col">ចំណង​ជើង</th>
-              <th scope="col">ចំណង​ជើង</th>
+
               <th scope="col">សៀវភៅ</th>
               <th scope="col" class="text-center">មើល</th>
             </tr>
@@ -44,10 +44,7 @@
                 <a alt="View Song" title="Views Song" href="/song/<%= song._id %>">
                   <%= song.songTitleKh %></a>
               </td>
-              <td>
-                <a alt="View Song" title="Views Song" href="/song/<%= song._id %>">
-                  <%= song.songTitleEn %></a>
-              </td>
+
               <td>
                 <a title="filter by book" href="/book/<%=song.book._id%>/song">
                   <%= song.book.bookName %></a>
