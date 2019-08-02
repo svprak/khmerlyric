@@ -190,8 +190,9 @@ router.delete('/:bid', isLoggedIn, isAdmin, function(req, res, next) {
         });
         //Find and Remove all songs that are associated with that book
         Songlist.deleteMany({
-          'book.id': bookIdToDelete
+          'book._id': bookIdToDelete
         })
+          .exec()
           .then(results => {
             if (results.deletedCount > 0) {
               req.flash(
