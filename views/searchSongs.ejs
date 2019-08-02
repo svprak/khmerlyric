@@ -38,7 +38,6 @@
                 <tr class="content-font">
                   <th>#</th>
                   <th>ចំណង​ជើង</th>
-                  <th>ចំណង​ជើង</th>
                   <th>សៀវភៅ</th>
                   <th class="text-center">មើល</th>
                 </tr>
@@ -54,10 +53,7 @@
                     <a alt="View Song" title="Views Song" href="/song/<%= song._id %>">
                       <%= song.songTitleKh %></a>
                   </td>
-                  <td>
-                    <a alt="View Song" title="Views Song" href="/song/<%= song._id %>">
-                      <%= song.songTitleEn %></a>
-                  </td>
+
                   <td>
                     <a title="filter by book" href="/book/<%=song.book._id%>/song">
                       <%= song.book.bookName %></a>

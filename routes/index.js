@@ -8,62 +8,76 @@ var Songlist = require('../models/songlists');
 
 /* GET home page. */
 router.get('/', async function(req, res, next) {
-  let page = req.query.page || 1;
-  let prev = req.query.prev || 1;
-  let isEnd = false;
-  page = parseInt(page);
-  prev = parseInt(prev);
-  const limit = 25;
-  let pageStart = page;
-  let lastPage = 3 + pageStart;
+  // let page = req.query.page || 1;
+  // let prev = req.query.prev || 1;
+  // let isEnd = false;
+  // page = parseInt(page);
+  // prev = parseInt(prev);
+  // const limit = 25;
+  // let pageStart = page;
+  // let lastPage = 3 + pageStart;
 
-  try {
-    var songBook = await Songbook.find();
-    if (songBook.length <= 0) {
-      req.flash('error', 'No songbook');
-      res.render('404.ejs');
-    } else {
-      var songLists = await Songlist.find()
-        .sort({ songTitleKh: 1 })
-        .skip(page > 0 ? (page - 1) * limit : 0)
-        .limit(limit);
+  // try {
+  //   var songBook = await Songbook.find();
+  //   if (songBook.length <= 0) {
+  //     req.flash('error', 'No songbook');
+  //     res.render('404.ejs');
+  //   } else {
+  //     var songLists = await Songlist.find()
+  //       .sort({ songTitleKh: 1 })
+  //       .skip(page > 0 ? (page - 1) * limit : 0)
+  //       .limit(limit);
 
-      if (songLists.length < limit) {
-        isEnd = true;
-      } else {
-        if (pageStart == prev) {
-          prev = pageStart;
-        } else {
-          prev = pageStart + 1;
-        }
-      }
-      if (songLists.length > 0) {
-        res.render('index.ejs', {
-          songlists: songLists,
-          songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
-          pageStart: pageStart,
-          lastPage: lastPage,
-          count: prev,
-          isEnd: isEnd,
-          showmore: true
-        });
-      } else {
-        page = prev;
-        res.render('songlist.ejs', {
-          // book_Id: book._id,
-          songlists: songLists,
-          songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
-          pageStart: pageStart,
-          lastPage: lastPage,
-          count: prev,
-          isEnd: isEnd,
-          showmore: true
-        });
-      }
-    }
-  } catch (err) {
-    req.flash('error', err.message);
-    console.log(err);
+  //     if (songLists.length < limit) {
+  //       isEnd = true;
+  //     } else {
+  //       if (pageStart == prev) {
+  //         prev = pageStart;
+  //       } else {
+  //         prev = pageStart + 1;
+  //       }
+  //     }
+  //     if (songLists.length > 0) {
+  //       res.render('index.ejs', {
+  //         songlists: songLists,
+  //         songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
+  //         pageStart: pageStart,
+  //         lastPage: lastPage,
+  //         count: prev,
+  //         isEnd: isEnd,
+  //         showmore: true
+  //       });
+  //     } else {
+  //       page = prev;
+  //       res.render('songlist.ejs', {
+  //         // book_Id: book._id,
+  //         songlists: songLists,
+  //         songBook: 'សរសើរ​ព្រះ​ទាំងអស់​គ្នា',
+  //         pageStart: pageStart,
+  //         lastPage: lastPage,
+  //         count: prev,
+  //         isEnd: isEnd,
+  //         showmore: true
+  //       });
+  //     }
+  //   }
+  // } catch (err) {
+  //   req.flash('error', err.message);
+  //   console.log(err);
+  // }
+  //load book instead on first page
+  var songbooks = await Songbook.find();
+
+  if (songbooks.length <= 0) {
+    res.render('books.ejs', {
+      songbooks: songbooks,
+      bookCount: songbooks.length
+    });
+  } else {
+    res.render('books.ejs', {
+      songbooks: songbooks,
+      bookCount: songbooks.length
+    });
   }
 });
 
