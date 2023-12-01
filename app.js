@@ -43,7 +43,7 @@ app.use(
   require('express-session')({
     secret: 'Ut justo sem, pharetra sit amet convallis id, aliquet a augue.',
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
   })
 );
 
@@ -57,7 +57,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //Passing Current User around to all routes //By doing it here so i don't
 //have to put current user in every routes manually
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   // console.log('app.use localuser');
   res.locals.isUser = req.user;
   // res.locals.isAdmin = req.user.role.admin;
@@ -84,12 +84,12 @@ app.use('/song', songRouter);
 app.use('/user', usersRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
