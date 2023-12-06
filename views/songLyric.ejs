@@ -1,34 +1,36 @@
-<% include partials/header.ejs %>
+<%- include ("partials/header.ejs") %>
 <div class="container">
   <section id="lyric">
-    <div class="row  mt-5">
+    <div class="row mt-5">
       <div class="fontForSongLyric col-lg-7 col-md-12 col-sm-12">
-        <h1 class="title-size-2">
-          <%= song.songTitleKh %>
-        </h1>
-        <p class="print-button">បទ​ភ្លេង​និង​ទំនុក​:
-          <%= song.songBy %>
-        </p>
-        <article id="lyric">
-          <%- song.songLyric %>
-        </article>
+        <h1 class="title-size-2"><%= song.songTitleKh %></h1>
+        <p class="print-button">បទ​ភ្លេង​និង​ទំនុក​: <%= song.songBy %></p>
+        <article id="lyric"><%- song.songLyric %></article>
 
         <hr />
         <div class="row">
-          <div class="col-md-6 ">
+          <div class="col-md-6">
             <!-- <a href="#"><i class="fas fa-print"></i>Crtl + P</a> &nbsp; -->
-            <button class="print-button btn btn-success btn-sm" onclick="printLyric()">
+            <button
+              class="print-button btn btn-success btn-sm"
+              onclick="printLyric()"
+            >
               <i class="fas fa-print"></i> Print
             </button>
-            &nbsp;&nbsp;<a class="print-button btn btn-primary btn-sm" href="/song"><i class="fas fa-backward"></i>
-              Back</a>
+            &nbsp;&nbsp;<a
+              class="print-button btn btn-primary btn-sm"
+              href="/song"
+              ><i class="fas fa-backward"></i> Back</a
+            >
             <!-- <a href="#"><i class="fas fa-download"></i></a> -->
           </div>
-          <div class="col-md-6 ">
+          <div class="col-md-6">
             <% if(isUser) {%> &nbsp;&nbsp;
-            <a class="print-button btn btn-primary btn-sm float-right" href="/song/<%= song._id %>/edit"><i
-                class="far fa-edit"></i>
-              Edit</a>
+            <a
+              class="print-button btn btn-primary btn-sm float-right"
+              href="/song/<%= song._id %>/edit"
+              ><i class="far fa-edit"></i> Edit</a
+            >
             <% } %>
           </div>
         </div>
@@ -41,11 +43,9 @@
           <div class="card-body">
             <% songTitles.forEach((title)=>{ %>
             <p class="card-text font-small content-font">
-              <a href="/song/<%=title._id %>">
-                <%= title.songTitleKh %></a><span class="text-muted float-right">
-                <%= title.book.bookName %> #
-                <%=
-                parseInt(title.songId) %>
+              <a href="/song/<%=title._id %>"> <%= title.songTitleKh %></a
+              ><span class="text-muted float-right">
+                <%= title.book.bookName %> # <%= parseInt(title.songId) %>
               </span>
             </p>
             <% }) %>

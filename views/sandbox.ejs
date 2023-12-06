@@ -1,17 +1,20 @@
-<% include partials/header.ejs %>
+<%- include ("partials/header.ejs") %>
 <div class="container">
   <h3 class="text-center">Sand Box</h3>
   <% if(songlists.length <= 0) {%>
 
   <h2 class="nokora-font mt-5 warning">
-    <!-- <i class="far fa-hand-paper"></i>--><i class="fas fa-hand-paper"></i> ដល់​ទំពរ័​ចុង​ក្រោយ​ហើយ!
+    <!-- <i class="far fa-hand-paper"></i>--><i class="fas fa-hand-paper"></i>
+    ដល់​ទំពរ័​ចុង​ក្រោយ​ហើយ!
   </h2>
 
   <hr />
   <div class="row">
     <div class="col-md-12">
-      <a class="btn btn-primary " href="/song">Back</a>
-      <a class="btn btn-primary  float-right" href="/song/new">Add new song to this book?</a>
+      <a class="btn btn-primary" href="/song">Back</a>
+      <a class="btn btn-primary float-right" href="/song/new"
+        >Add new song to this book?</a
+      >
     </div>
   </div>
   <% } else { %>
@@ -36,30 +39,40 @@
         <tbody>
           <% songlists.forEach((song)=> { %>
           <tr class="table-row-highlight content-font">
-            <th scope="row">
-              <%= song.songId %>
-            </th>
-            <td>
-              <%= song.songTitleKh %>
-            </td>
-            <td>
-              <%= song.songTitleEn %>
-            </td>
+            <th scope="row"><%= song.songId %></th>
+            <td><%= song.songTitleKh %></td>
+            <td><%= song.songTitleEn %></td>
             <td>
               <a href="/book/<%=song.book.id%>/song">
-                <%= song.book.bookName %></a>
+                <%= song.book.bookName %></a
+              >
             </td>
+            <td><%= song.songBy %></td>
             <td>
-              <%= song.songBy %>
-            </td>
-            <td>
-              <a class="btn btn-primary btn-sm" alt="View Song" title="Views Song" href="/song/<%= song._id %>"><i
-                  class="fas fa-eye"></i></a>
+              <a
+                class="btn btn-primary btn-sm"
+                alt="View Song"
+                title="Views Song"
+                href="/song/<%= song._id %>"
+                ><i class="fas fa-eye"></i
+              ></a>
               <% if(isUser) {%>
               <form action="/song/<%= song._id %>?_method=DELETE" method="POST">
-                <a class="btn btn-sm btn-warning" alt="Edit Song" data-toggle="tooltip" title="Edit Song" href="/song/<%= song._id %>/edit">
-                  <i class="fas fa-pencil-alt"></i></a>
-                <button class="btn btn-sm btn-danger float-right" alt="Delete Song" data-toggle="tooltip" title="Delete Song">
+                <a
+                  class="btn btn-sm btn-warning"
+                  alt="Edit Song"
+                  data-toggle="tooltip"
+                  title="Edit Song"
+                  href="/song/<%= song._id %>/edit"
+                >
+                  <i class="fas fa-pencil-alt"></i
+                ></a>
+                <button
+                  class="btn btn-sm btn-danger float-right"
+                  alt="Delete Song"
+                  data-toggle="tooltip"
+                  title="Delete Song"
+                >
                   <i class="fas fa-remove"></i>
                 </button>
               </form>

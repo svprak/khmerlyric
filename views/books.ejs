@@ -1,9 +1,7 @@
-<% include partials/header.ejs %>
+<%- include("partials/header.ejs") %>
 <div class="container">
   <% if(songbooks.length <=0) { %>
-  <h1 class="mt-5">
-    - Number of Book : <%= bookCount %>
-  </h1>
+  <h1 class="mt-5">- Number of Book : <%= bookCount %></h1>
   <p>Welcome to</p>
   <hr />
   <div class="row">
@@ -26,11 +24,16 @@
     <div class="col-md-2">
       <div class="card mb-4">
         <a class="link" href="/book/<%= songbook._id %>/song">
-          <img src="<%= songbook.bookCoverImg %>" class="card-img-top img-fluid" alt="<%= songbook.bookName %>" /></a>
+          <img
+            src="<%= songbook.bookCoverImg %>"
+            class="card-img-top img-fluid"
+            alt="<%= songbook.bookName %>"
+        /></a>
         <div class="card-body content-font p-2">
           <h5 class="card-title descrition pt-2">
             <a class="link" href="/book/<%= songbook._id %>/song">
-              <%= songbook.bookName %></a>
+              <%= songbook.bookName %></a
+            >
           </h5>
 
           <!-- <p class="card-text">
@@ -38,11 +41,17 @@
           </p> -->
           <% if(isUser && isUser.role.admin) {%>
           <div class="operation">
-            <form action="/book/<%= songbook._id %>?_method=DELETE" method="POST">
+            <form
+              action="/book/<%= songbook._id %>?_method=DELETE"
+              method="POST"
+            >
               <button class="btn btn-sm btn-danger">
                 <i class="fas fa-remove"></i>
               </button>
-              <a class="btn btn-sm btn-warning float-right" href="/book/<%= songbook._id %>/edit">
+              <a
+                class="btn btn-sm btn-warning float-right"
+                href="/book/<%= songbook._id %>/edit"
+              >
                 <div><i class="fas fa-pencil-alt"></i></div>
               </a>
             </form>
@@ -52,6 +61,6 @@
       </div>
     </div>
     <% }) } %>
-        </div>
-        <% include partials/footer.ejs %>
-      </div>
+  </div>
+  <% include partials/footer.ejs %>
+</div>

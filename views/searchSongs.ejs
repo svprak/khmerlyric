@@ -1,12 +1,11 @@
-<% include partials/header.ejs %>
+<%- include ("partials/header.ejs") %>
 <div class="container">
   <% if(searchedSongs.length <= 0) {%>
 
   <h2 class="nokora-font">
     <!-- មិនទាន​មាន​បទ​ចម្រៀង​នៅ​ក្នុង​សៀវភៅ​  -->
-    រក​ឃើញ
-    <%= searchedSongs.length %> បទ ដែល​មាន​អក្សរ លេខ​ឬពាក្យ
-    <%= searchTerm %>
+    រក​ឃើញ <%= searchedSongs.length %> បទ ដែល​មាន​អក្សរ លេខ​ឬពាក្យ <%=
+    searchTerm %>
     <!-- ​​នៅ​ឡើយ​ទេ! -->
   </h2>
 
@@ -15,76 +14,108 @@
     <div class="col-md-12">
       <div class="col-md-3">
         <% if(isUser) {%>
-        <a class="btn btn-primary btn-block" href="/song/new">Add new song to this book?</a>
+        <a class="btn btn-primary btn-block" href="/song/new"
+          >Add new song to this book?</a
+        >
         <%}%>
       </div>
     </div>
   </div>
   <% } else { %>
 
-        <h5 class="heading-font found-song-msg mt-5">
-          <i class="fas fa-clipboard-list"></i> បញ្ជី​បទ​ចម្រៀង
-        </h5>
-        <h2 class="heading-font" style="display:inline-block">
-          រក​ឃើញ
-          <%= searchedSongs.length %> បទ ដែល​មាន​អក្សរ លេខ​ឬពាក្យ
-          <%= searchTerm %>
-        </h2>
-        ​
-        <div class="row">
-          <div class="col-md-12">
-            <table class="table">
-              <thead>
-                <tr class="content-font">
-                  <th>#</th>
-                  <th>ចំណង​ជើង</th>
-                  <th>សៀវភៅ</th>
-                  <th class="text-center">មើល</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% searchedSongs.forEach((song)=> { %>
-                <tr class="table-row-highlight content-font">
-                  <td scope="row">
-                    <a alt="View Song" title="Views Song" href="/song/<%= song._id %>">
-                      <%= song.songId %></a>
-                  </td>
-                  <td>
-                    <a alt="View Song" title="Views Song" href="/song/<%= song._id %>">
-                      <%= song.songTitleKh %></a>
-                  </td>
+  <h5 class="heading-font found-song-msg mt-5">
+    <i class="fas fa-clipboard-list"></i> បញ្ជី​បទ​ចម្រៀង
+  </h5>
+  <h2 class="heading-font" style="display: inline-block">
+    រក​ឃើញ <%= searchedSongs.length %> បទ ដែល​មាន​អក្សរ លេខ​ឬពាក្យ <%=
+    searchTerm %>
+  </h2>
+  ​
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <thead>
+          <tr class="content-font">
+            <th>#</th>
+            <th>ចំណង​ជើង</th>
+            <th>សៀវភៅ</th>
+            <th class="text-center">មើល</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% searchedSongs.forEach((song)=> { %>
+          <tr class="table-row-highlight content-font">
+            <td scope="row">
+              <a
+                alt="View Song"
+                title="Views Song"
+                href="/song/<%= song._id %>"
+              >
+                <%= song.songId %></a
+              >
+            </td>
+            <td>
+              <a
+                alt="View Song"
+                title="Views Song"
+                href="/song/<%= song._id %>"
+              >
+                <%= song.songTitleKh %></a
+              >
+            </td>
 
-                  <td>
-                    <a title="filter by book" href="/book/<%=song.book._id%>/song">
-                      <%= song.book.bookName %></a>
-                  </td>
+            <td>
+              <a title="filter by book" href="/book/<%=song.book._id%>/song">
+                <%= song.book.bookName %></a
+              >
+            </td>
 
-                  <td class="text-center">
-                    <a class="btn btn-outline-primary btn-sm" alt="View Song" title="Views Song"
-                      href="/song/<%= song._id %>"><i class="fas fa-eye"></i></a>
-                    <% if(isUser) {%>
-                    <form action="/song/<%= song._id %>?_method=DELETE" method="POST" id="delete-form">
-                      <a class="btn btn-sm btn-warning" alt="Edit Song" data-toggle="tooltip" title="Edit Song"
-                        href="/song/<%= song._id %>/edit">
-                        <i class="fas fa-pencil-alt"></i></a>
-                      <button class="btn btn-sm btn-danger" alt="Delete Song" data-toggle="tooltip" title="Delete Song">
-                        <i class="fas fa-remove"></i>
-                      </button>
-                    </form>
-                    <%}%>
+            <td class="text-center">
+              <a
+                class="btn btn-outline-primary btn-sm"
+                alt="View Song"
+                title="Views Song"
+                href="/song/<%= song._id %>"
+                ><i class="fas fa-eye"></i
+              ></a>
+              <% if(isUser) {%>
+              <form
+                action="/song/<%= song._id %>?_method=DELETE"
+                method="POST"
+                id="delete-form"
+              >
+                <a
+                  class="btn btn-sm btn-warning"
+                  alt="Edit Song"
+                  data-toggle="tooltip"
+                  title="Edit Song"
+                  href="/song/<%= song._id %>/edit"
+                >
+                  <i class="fas fa-pencil-alt"></i
+                ></a>
+                <button
+                  class="btn btn-sm btn-danger"
+                  alt="Delete Song"
+                  data-toggle="tooltip"
+                  title="Delete Song"
+                >
+                  <i class="fas fa-remove"></i>
+                </button>
+              </form>
+              <%}%>
             </td>
           </tr>
           <%}) }%>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-        <!-- if book has more than 10 song show pagination otherwise don't show -->
+  <!-- if book has more than 10 song show pagination otherwise don't show -->
 
-        <% if(searchedSongs.length > 10) { %>
+  <% if(searchedSongs.length > 10) { %>
 
-        <!-- <div class="row">
+  <!-- <div class="row">
     <div class="col-lg mt-5">
       <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
@@ -105,7 +136,7 @@
       </nav>
     </div>
   </div> -->
-        <%}%>
+  <%}%>
 </div>
 
 <% include partials/footer.ejs %>

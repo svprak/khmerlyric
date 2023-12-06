@@ -15,7 +15,8 @@ const User = require('./models/user');
 
 const dbUrl = process.env.DATABASEURL;
 // Connect to local Server
-mongoose.connect(dbUrl, { useNewUrlParser: true });
+//mongoose.connect(dbUrl, { useNewUrlParser: true });
+mongoose.connect(dbUrl, { useUnifiedTopology: true });
 
 // // Connect to Altast server
 //var usersRouter = require('./routes/users');
