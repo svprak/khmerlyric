@@ -128,7 +128,7 @@ router.get('/:bid/song', async function (req, res, next) {
   if (songLists.length <= 0) {
     res.render('songlister.ejs', {
       songlists: songLists,
-      isUser: req.user,
+      // isUser: req.user,
       page_title: page_title.bookName,
       showmore: false, //For Pagination option
     });
@@ -136,7 +136,7 @@ router.get('/:bid/song', async function (req, res, next) {
     res.render('songlister.ejs', {
       songlists: songLists,
       page_title: page_title.bookName,
-      isUser: req.user,
+      // isUser: req.user,
       showmore: false, //For Pagination option
     });
   }
