@@ -13,12 +13,15 @@ const flash = require('connect-flash');
 
 const User = require('./models/user');
 
-const dbUrl = process.env.DATABASEURL;
 // Connect to local Server
-//mongoose.connect(dbUrl, { useNewUrlParser: true });
-mongoose.connect(dbUrl, { useUnifiedTopology: true });
+//const dbUrl1 = "mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true"
+//mongoose.connect(dbUrl1, { useNewUrlParser: true,useUnifiedTopology: true });
 
-// // Connect to Altast server
+//Connect to Altast server
+const dbUrl = process.env.DATABASEURL;
+mongoose.connect(dbUrl, { useNewUrlParser: true });
+//mongoose.connect(dbUrl, { useUnifiedTopology: true });
+
 //var usersRouter = require('./routes/users');
 
 const app = express();

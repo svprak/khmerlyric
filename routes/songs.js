@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next) {
   let isEnd = false;
   page = parseInt(page);
   prev = parseInt(prev);
-  const limit = 15;
+  const limit = 25;
   let pageStart = page;
   // let lastPage = 3 + pageStart;
 
@@ -37,7 +37,7 @@ router.get('/', async function(req, res, next) {
         }
       }
       if (songLists.length > 0) {
-        res.render('songlister', {
+        res.render('songlister.ejs', {
           songlists: songLists,
           pageStart: pageStart,
           count: prev,
@@ -46,7 +46,7 @@ router.get('/', async function(req, res, next) {
         });
       } else {
         page = prev;
-        res.render('songlister', {
+        res.render('songlister.ejs', {
           // book_Id: book._id,
           songlists: songLists,
           pageStart: pageStart,
