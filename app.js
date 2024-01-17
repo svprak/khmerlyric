@@ -5,26 +5,24 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const session = require('express-session')
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 const flash = require('connect-flash');
-
 const User = require('./models/user');
 
-// Connect to local Server
-//const dbUrl1 = "mongodb+srv://msAdmin:2gTZ577suYKUHvMK@lyricssheets-rbyod.mongodb.net/musheets?retryWrites=true"
-//mongoose.connect(dbUrl1, { useNewUrlParser: true,useUnifiedTopology: true });
 
 //Connect to Altast server
-const dbUrl = process.env.DATABASEURL;
-mongoose.connect(dbUrl, { useNewUrlParser: true });
-//mongoose.connect(dbUrl, { useUnifiedTopology: true });
-
-//var usersRouter = require('./routes/users');
+​const dbUrl = process.env.DATABASEURL;
+​mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true });
+​
+​
 
 const app = express();
+
+// Connect to local Server
 
 // Bring in Router
 var usersRouter = require('./routes/users');

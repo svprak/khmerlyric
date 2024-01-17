@@ -20,7 +20,7 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
   });
   User.register(newUser, req.body.password, function(err, user) {
     if (err) {
-      console.log(`In register ${err.message}`);
+      //console.log(`In register ${err.message}`);
       req.flash('error', err.message);
       return res.render('signup.ejs');
     }
@@ -58,9 +58,14 @@ router.post(
 
 // LOG OUT
 router.get('/logout', function(req, res) {
-  req.logout();
-  req.flash('error', 'ចាក​ចេញ​បាន​សម្រេចហើយ!!!');
-  res.redirect('/');
+  req.logout(function(err){
+    if(!err){
+      req.flash('error', 'ចាក​ចេញ​បាន​សម្រេចហើយ!!!');
+      res.redirect('/');  
+    }else {
+      req.flash('error', 'មានបញ្ហាចេញមិនរួចទេ!!!');
+    }
+  });
 });
 
 module.exports = router;
