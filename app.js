@@ -15,10 +15,9 @@ const User = require('./models/user');
 
 
 //Connect to Altast server
-​const dbUrl = process.env.DATABASEURL;
-​mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true });
-​
-​
+const dbUrl = process.env.DATABASEURL;
+
+mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true });
 
 const app = express();
 
