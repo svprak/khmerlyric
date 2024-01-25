@@ -5,7 +5,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-const session = require('express-session')
+//const session = require('express-session')
+const session = require('cookie-session')
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -22,7 +23,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true });
 const app = express();
 
 // Connect to local Server
-
+d
 // Bring in Router
 var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
@@ -41,7 +42,7 @@ app.use(flash());
 
 //Express-session Configuration//////
 app.use(
-  require('express-session')({
+  require('cookie-session')({
     secret: 'Ut justo sem, pharetra sit amet convallis id, aliquet a augue.',
     resave: false,
     saveUninitialized: false,
