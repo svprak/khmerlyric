@@ -23,7 +23,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true });
 const app = express();
 
 // Connect to local Server
-d
+
 // Bring in Router
 var usersRouter = require('./routes/users');
 var indexRouter = require('./routes/index');
