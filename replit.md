@@ -31,6 +31,7 @@ This is a music sheet/songbook management application built with Node.js, Expres
 
 ### Environment Variables
 - `DATABASEURL`: MongoDB connection string (required)
+- `SESSION_SECRET`: Secret key for session encryption (recommended for production)
 - `PORT`: Server port (defaults to 5000 for Replit compatibility)
 
 ### Current Setup Status

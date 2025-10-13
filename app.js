@@ -61,9 +61,14 @@ app.use(cookieParser());
 app.use(flash());
 
 //Express-session Configuration//////
+const sessionSecret = process.env.SESSION_SECRET || 'Ut justo sem, pharetra sit amet convallis id, aliquet a augue.';
+if (!process.env.SESSION_SECRET) {
+  console.warn('WARNING: SESSION_SECRET not set. Using default (insecure for production).');
+  console.warn('Please add a SESSION_SECRET to your Replit secrets for better security.');
+}
 app.use(
   require('cookie-session')({
-    secret: 'Ut justo sem, pharetra sit amet convallis id, aliquet a augue.',
+    secret: sessionSecret,
     resave: false,
     saveUninitialized: false,
   })
