@@ -15,10 +15,30 @@ const flash = require('connect-flash');
 const User = require('./models/user');
 
 
-//Connect to Altast server
+//Connect to MongoDB server
 const dbUrl = process.env.DATABASEURL;
 
-mongoose.connect(dbUrl, { useNewUrlParser: true,useUnifiedTopology: true });
+if (!dbUrl) {
+  console.error('ERROR: DATABASEURL environment variable is not set.');
+  console.error('Please provide a valid MongoDB connection string in the DATABASEURL secret.');
+  process.exit(1);
+}
+
+console.log('Attempting to connect to MongoDB...');
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Successfully connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('ERROR: Failed to connect to MongoDB');
+    console.error('Error details:', err.message);
+    console.error('\nPlease check:');
+    console.error('1. Is your MongoDB cluster running and accessible?');
+    console.error('2. Is the DATABASEURL connection string correct?');
+    console.error('3. Have you whitelisted the Replit IP address in MongoDB Atlas?');
+    console.error('\nCurrent DATABASEURL host:', dbUrl.match(/@([^/]+)/)?.[1] || 'unknown');
+    process.exit(1);
+  });
 
 const app = express();
 
