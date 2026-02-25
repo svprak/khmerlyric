@@ -8,12 +8,12 @@ var router = express.Router();
 
 var isLoggedIn = require('../mw/isLoggedIn');
 var isAdmin = require('../mw/isAdmin.js');
-/* GET signup form  isLoggedIn, isAdmin,*/
-router.get('/register',  function(req, res, next) {
+/* GET signup form  */
+router.get('/register', isLoggedIn, isAdmin, function(req, res, next) {
   res.render('signup.ejs');
 });
-// POST New User isLoggedIn, isAdmin,
-router.post('/register',  function(req, res, next) {
+// POST New User 
+router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
   var newUser = new User({
     username: req.body.username,
     email: req.body.email
