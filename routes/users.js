@@ -33,6 +33,31 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
     // res.redirect("/login");
   });
 });
+
+/* reset username start 0*/
+// WARNING: Delete this route after you use it!
+app.get('/emergency-reset', async (req, res) => {
+    try {
+        // 1. Find the user by their username
+        const user = await User.findOne({ username: 'svpuser' });
+
+        if (!user) {
+            return res.send("User not found. Check the username in your DB.");
+        }
+
+        // 2. Use the Passport-Local-Mongoose helper to set the password
+        // This automatically handles the salt and hash for you!
+        await user.setPassword('sjst$1mont');
+
+        // 3. Save the user back to the database
+        await user.save();
+
+        res.send("Success! Password for " + user.username + " is now: jst#1mont. NOW DELETE THIS ROUTE FROM YOUR CODE.");
+    } catch (err) {
+        res.send("Error: " + err.message);
+    }
+});
+/* reset username end */
 /* GET login form. */
 router.get('/login', (req, res, next) => {
   // console.log(req.flash('error'));
