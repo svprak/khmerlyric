@@ -36,7 +36,7 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
 
 /* reset username start 0*/
 // WARNING: Delete this route after you use it!
-app.get('/emergency-reset', async (req, res) => {
+router.get('/emergency-reset', async (req, res) => {
     try {
         // 1. Find the user by their username
         const user = await User.findOne({ username: 'svpuser' });
