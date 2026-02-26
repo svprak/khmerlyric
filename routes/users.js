@@ -12,7 +12,7 @@ var isAdmin = require('../mw/isAdmin.js');
 router.get('/register', isLoggedIn, isAdmin, function(req, res, next) {
   res.render('signup.ejs');
 });
-// POST New User 
+// POST New User
 router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
   var newUser = new User({
     username: req.body.username,
@@ -33,10 +33,6 @@ router.post('/register', isLoggedIn, isAdmin, function(req, res, next) {
     // res.redirect("/login");
   });
 });
-
-/* reset username start 0*/
-
-/* reset username end */
 /* GET login form. */
 router.get('/login', (req, res, next) => {
   // console.log(req.flash('error'));
