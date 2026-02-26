@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css?family=Khmer" rel="stylesheet" />
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
-    <link
-      href="https://fonts.googleapis.com/css?family=Battambang|Metal|Kdam+Thmor|Khmer|Content|Koulen|Moul|Nokora|Taprom&amp;subset=khmer"
-      rel="stylesheet" />
-    <link rel="icon" href="../../favico/favicon.ico" />
-    <link rel="stylesheet" href="../../css/style.css" />
-    <title>
-      <%= page_title %>
-    </title>
-    <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-  </head>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+  <link href="https://fonts.googleapis.com/css?family=Khmer" rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Battambang|Metal|Kdam+Thmor|Khmer|Content|Koulen|Moul|Nokora|Taprom&amp;subset=khmer"
+    rel="stylesheet" />
+  <link rel="icon" href="../../favico/favicon.ico" />
+  <link rel="stylesheet" href="../../css/style.css" />
+  <title>
+    <%= page_title %>
+  </title>
+  <script src="https://cdn.ckeditor.com/4.11.1/standard/ckeditor.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+</head>
 
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a href="/" class="navbar-brand"><i class="fas fa-bible"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="/book">សៀវភៅ <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/song">ចម្រៀង</a>
-            </li>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a href="/" class="navbar-brand"><i class="fas fa-bible"></i></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/book">សៀវភៅ <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/song">ចម្រៀង</a>
+          </li>
 
-            <% if(isUser) { %>
+          <% if(isUser) { %>
             <li class="nav-item">
               <a class="nav-link" href="#">BLOG</a>
             </li>
@@ -54,9 +54,10 @@
                 <a class="dropdown-item" href="/book/new">ថែម​សៀវភៅថ្មី</a>
                 <a class="dropdown-item" href="/song/new">ថែម​បទថ្មី</a>
                 <% if(isUser && isUser.role.admin){%>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="/user/register">ចុះ​ឈ្មោះ</a>
-                <%}%>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/user/register">ចុះ​ឈ្មោះ</a>
+                  <a class="dropdown-item" href="/user/list">បញ្ជី​អ្នក​ប្រើ</a>
+                  <%}%>
               </div>
             </li>
             <li class="nav-item">
@@ -67,54 +68,57 @@
               <a class="nav-link" href="#">
                 ស្វាគមន៌
                 <span class="loginAs">
-                  <%= isUser.username.toUpperCase() %></span>
-                </a>
+                  <%= isUser.username.toUpperCase() %>
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user/reset">ពាក្យសម្ងាត់</a>
             </li>
             <li class="nav-item sign-out">
               <a class="nav-link" href="/user/logout"><i class="fas fa-unlock"></i><i class="fas fa-lock "></i></a>
             </li>
             <%} else { %>
-            <li class="nav-item lock">
-              <a class="nav-link" href="/user/login">
-                <i class="fas fa-unlock"></i><i class="fas fa-lock "></i>
-              </a>
-            </li>
-            <%}%>
-          </ul>
+              <li class="nav-item lock">
+                <a class="nav-link" href="/user/login">
+                  <i class="fas fa-unlock"></i><i class="fas fa-lock "></i>
+                </a>
+              </li>
+              <%}%>
+        </ul>
 
-          <!-- <form action="/search?source=hp" method="GET" class="form-inline my-2 my-lg-0">
+        <!-- <form action="/search?source=hp" method="GET" class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2 svp_inputWidth" type="search" placeholder="song title, author, bands"
             aria-label="Search" name="searchTerm">
           <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
         </form> -->
+      </div>
+    </div>
+  </nav>
+  <% if(newbook !=="true" ) { %>
+    <section class="bg-search-box">
+      <div class=" container">
+        <div class="row pb-5">
+          <div class="col-md-6   offset-md-3 mt-5">
+            <form action="/search?source=hp" method="GET" class="search-form">
+              <div class="input-group">
+                <input type="search" name="searchTerm" class="form-control" placeholder="song title | song id" />
+                <button type="submit" class="btn btn-primary">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </nav>
-    <% if(newbook !== "true") { %>
-            <section class="bg-search-box">
-              <div class=" container">
-                <div class="row pb-5">
-                  <div class="col-md-6   offset-md-3 mt-5">
-                    <form action="/search?source=hp" method="GET" class="search-form">
-                      <div class="input-group">
-                        <input type="search" name="searchTerm" class="form-control"
-                          placeholder="song title | song id" />
-                        <button type="submit" class="btn btn-primary">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </section>
-            <%}%>
-    <% if(error && error.length>0) { %>
-            <div class="text-center alert alert-danger">
-              <%= error %>
-            </div>
-            <% } %>
-            <% if(success && success.length>0) { %>
+    </section>
+    <%}%>
+      <% if(error && error.length>0) { %>
+        <div class="text-center alert alert-danger">
+          <%= error %>
+        </div>
+        <% } %>
+          <% if(success && success.length>0) { %>
             <div class="text-center alert alert-success">
               <%= success %>
             </div>
