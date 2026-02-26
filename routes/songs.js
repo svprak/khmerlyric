@@ -8,7 +8,7 @@ var isLoggedIn = require('../mw/isLoggedIn');
 // var isAdmin = require('../mw/isAdmin');
 
 // Get all available songs
-router.get('/', async function(req, res, next) {
+router.get('/', async function (req, res, next) {
   let page = req.query.page || 1;
   let prev = req.query.prev || 1;
   let isEnd = false;
@@ -62,7 +62,7 @@ router.get('/', async function(req, res, next) {
   }
 });
 /* Getting form to add new song */
-router.get('/new', isLoggedIn, function(req, res, next) {
+router.get('/new', isLoggedIn, function (req, res, next) {
   // res.send('you have reach the it.');
   // console.log("Test to add new song to the selected book");
   //Get all book names to fill in selection option for for book name
@@ -84,7 +84,7 @@ router.get('/new', isLoggedIn, function(req, res, next) {
     });
 });
 // POST-Insert New SONG to the selected songbook
-router.post('/', isLoggedIn, async function(req, res, next) {
+router.post('/', isLoggedIn, async function (req, res, next) {
   //Need to choose book
   const bookId = req.body.bookId;
   if (bookId == 'default') {
@@ -121,8 +121,7 @@ router.post('/', isLoggedIn, async function(req, res, next) {
         // console.log(typeof bookId);
         req.flash(
           'success',
-          `បទលេខ ${newSong.songId} - ${
-            newSong.songTitleKh
+          `បទលេខ ${newSong.songId} - ${newSong.songTitleKh
           } បញ្ជូល​បានដោយ​ជោគ​ជ័យ`
         );
         //Redirect back to add new song page
@@ -131,8 +130,7 @@ router.post('/', isLoggedIn, async function(req, res, next) {
       .catch(() => {
         req.flash(
           'error',
-          `Something wrong: បទលេខ ${newSong.songId} - ${
-            newSong.songTitleKh
+          `Something wrong: បទលេខ ${newSong.songId} - ${newSong.songTitleKh
           } មិនអាច​បញ្ជូល​បានទេ`
         );
         res.render('newsong.ejs', {
@@ -143,7 +141,7 @@ router.post('/', isLoggedIn, async function(req, res, next) {
 });
 
 // View Song lyric
-router.get('/:sid', async function(req, res, next) {
+router.get('/:sid', async function (req, res, next) {
   //Randomly Select 10 song from all song in DB for quick access to those songs
   const songs = await Songlist.aggregate([{ $sample: { size: 10 } }]);
   // .select('songTitleKh _id')
@@ -172,7 +170,7 @@ router.get('/:sid', async function(req, res, next) {
     });
 });
 // EDIT Song
-router.get('/:sid/edit', isLoggedIn, async function(req, res, next) {
+router.get('/:sid/edit', isLoggedIn, async function (req, res, next) {
   const song_id = req.params.sid;
   // Get all book to fill book selection options
   var books = await Songbook.find().select('bookName _id');
@@ -200,13 +198,13 @@ router.get('/:sid/edit', isLoggedIn, async function(req, res, next) {
 });
 //Update Song option
 // EDIT Song
-router.put('/:sid', isLoggedIn, async function(req, res, next) {
+router.put('/:sid', isLoggedIn, async function (req, res, next) {
   // console.log(`Book ${req.body.bookId}`);
   // const bookID = ;
   //This is may too much just to get book name but for now I don't know
   //a better to do it. so this will do for now.
   const book = await Songbook.findOne({
-    _id: mongoose.Types.ObjectId(req.body.bookId)
+    _id: new mongoose.Types.ObjectId(req.body.bookId)
   }).select('_id bookName');
 
   // console.log(`Found Book ${book}`);

@@ -117,7 +117,7 @@ router.get('/:bid/edit', isLoggedIn, isAdmin, function (req, res, next) {
 //Get all Songs from a book
 router.get('/:bid/song', async function (req, res, next) {
   //Convert book ID ot ObjectId first otherwise it won't work
-  const bookId = mongoose.Types.ObjectId(req.params.bid);
+  const bookId = new mongoose.Types.ObjectId(req.params.bid);
   const page_title = await Songbook.findOne({ _id: bookId });
   //Find all songs from a specific book using book.id that is embedded in song documents then
   //order found songs by song Id by setting songId:1
