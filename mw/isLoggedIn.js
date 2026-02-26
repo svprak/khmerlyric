@@ -4,5 +4,5 @@ module.exports = function (req, res, next) {
     return next();
   }
   req.flash('error', 'សូម​ចូល​ក្នុង​ប្រពន្ធ័ជា​មុន​សិន!!!');
-  res.redirect('/user/reset-password');
+  res.redirect('/user/resetPassword');
 };
