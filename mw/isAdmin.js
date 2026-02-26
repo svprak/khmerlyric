@@ -1,5 +1,5 @@
-module.exports = function(req, res, next) {
-  if (req.isAuthenticated() && req.user.role.admin == true) {
+module.exports = function (req, res, next) {
+  if (req.isAuthenticated() && req.user.role.admin == false) {
     return next(); //
   }
   req.flash(
