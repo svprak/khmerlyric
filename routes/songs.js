@@ -151,7 +151,7 @@ router.get('/:sid', async function (req, res, next) {
     .select('songTitleKh songLyric songBy book')
     .exec()
     .then(song => {
-      if (song.length <= 0) {
+      if (!song) {
         req.flash('error', `មាន​បញ្ជា​រក​បទ​នេះ​មិន​ឃើញ​ទេ`);
         res.render('songLyric.ejs');
       } else {

@@ -54,6 +54,7 @@ var songRouter = require('./routes/songs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(require('helmet')());
 app.use(logger('tiny'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

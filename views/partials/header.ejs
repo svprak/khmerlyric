@@ -56,7 +56,6 @@
                 <% if(isUser && isUser.role.admin){%>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/user/register">ចុះ​ឈ្មោះ</a>
-                  <a class="dropdown-item" href="/user/list">បញ្ជី​អ្នក​ប្រើ</a>
                   <%}%>
               </div>
             </li>
@@ -71,9 +70,6 @@
                   <%= isUser.username.toUpperCase() %>
                 </span>
               </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/reset">ពាក្យសម្ងាត់</a>
             </li>
             <li class="nav-item sign-out">
               <a class="nav-link" href="/user/logout"><i class="fas fa-unlock"></i><i class="fas fa-lock "></i></a>

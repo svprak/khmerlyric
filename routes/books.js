@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
 });
 // Setup Filter
 const fileFilter = function (req, file, cb) {
-  if (file.mimetype === 'image/jpg' || 'image/png') {
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
     cb(null, true);
   } else {
     cb(null, false);
@@ -125,21 +125,11 @@ router.get('/:bid/song', async function (req, res, next) {
     songId: 1,
   });
   // console.log(`Song list--> ${songLists.length}`);
-  if (songLists.length <= 0) {
-    res.render('songlisterFromBook.ejs', {
-      songlists: songLists,
-      // isUser: req.user,
-      page_title: page_title.bookName,
-      showmore: false, //For Pagination option
-    });
-  } else {
-    res.render('songlisterFromBook.ejs', {
-      songlists: songLists,
-      page_title: page_title.bookName,
-      // isUser: req.user,
-      showmore: false, //For Pagination option
-    });
-  }
+  res.render('songlisterFromBook.ejs', {
+    songlists: songLists,
+    page_title: page_title.bookName,
+    showmore: false, //For Pagination option
+  });
 });
 
 // // UPDATE Song BOOk
@@ -184,7 +174,7 @@ router.delete('/:bid', isLoggedIn, isAdmin, function (req, res, next) {
       //If no book to be deleted.
       if (deletedBook === undefined) {
         req.flash('error', 'No books were deleted');
-        res.render('back');
+        res.redirect('back');
       } else {
         //Remove book Cover for Uploads folder
         fs.unlink(deletedBook.bookCoverImg, (err) => {

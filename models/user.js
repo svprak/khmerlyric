@@ -13,16 +13,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 3,
-    maxlength: 20
+    maxlength: 255
   },
   role: {
     admin: {
       type: Boolean,
-      default: 'false'
+      default: false
     },
     operator: {
       type: Boolean,
-      default: 'true'
+      default: true
     }
   },
   password: {
