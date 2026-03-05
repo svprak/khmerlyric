@@ -40,15 +40,16 @@
       <div class="col-md-4 offset-4">
         <form action="/user/login" method="POST" class="form-group myForm">
           <div class="form-group">
-            <label for=""><small>username</small></label>
-            <input type="text" class="form-control" name="username" required />
-            <!-- <small class="form-text text-muted">
-                    Please enter a username.
-                  </small> -->
+            <label for=""><small>username or email</small></label>
+            <input type="text" class="form-control" name="username" placeholder="your username or email" required />
           </div>
           <div class="form-group">
             <label for=""><small>password</small></label>
             <input type="password" class="form-control" name="password" required />
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+            <label class="form-check-label" for="rememberMe"><small>Remember me</small></label>
           </div>
           <div class="form-group">
             <button class="btn btn-primary btn-block mt-5">login</button>

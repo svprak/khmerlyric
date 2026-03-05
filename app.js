@@ -78,7 +78,35 @@ app.use(
 //passport initialization
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
+
+// customize local strategy to accept username or email (case-insensitive)
+const authenticate = User.authenticate();
+passport.use(new LocalStrategy({ usernameField: 'username' }, function (username, password, done) {
+  // look up by username or email
+  const search = {
+    $or: [
+      { username: new RegExp('^' + username + '$', 'i') },
+      { email: new RegExp('^' + username + '$', 'i') }
+    ]
+  };
+  User.findOne(search, function (err, user) {
+    if (err) { return done(err); }
+    if (!user) {
+      // no such account
+      return done(null, false, { message: 'Incorrect username or email.' });
+    }
+    // delegate to passport-local-mongoose's authenticate function
+    authenticate(user.username, password, function (err, authenticatedUser, options) {
+      if (err) { return done(err); }
+      if (!authenticatedUser) {
+        // wrong password
+        return done(null, false, { message: options && options.message ? options.message : 'Incorrect password.' });
+      }
+      return done(null, authenticatedUser);
+    });
+  });
+}));
+
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 // End passport//

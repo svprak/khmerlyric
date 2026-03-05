@@ -43,18 +43,35 @@ router.get('/login', (req, res, next) => {
     res.render('login.ejs');
   }
 });
-// LOGING IN
-router.post(
-  '/login',
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/user/login'
-  }),
-  function (req, res) {
-    req.flash('success', `សួរស្តីី`);
-    res.redirect('/');
-  }
-);
+// LOGGING IN (custom callback supports remember-me and redirect back)
+router.post('/login', function (req, res, next) {
+  passport.authenticate('local', function (err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      // authentication failed
+      req.flash('error', info && info.message ? info.message : 'Login failed.');
+      return res.redirect('/user/login');
+    }
+    req.logIn(user, function (err) {
+      if (err) {
+        return next(err);
+      }
+      // remember me checkbox
+      if (req.body.remember) {
+        // cookie-session stores session.cookie; set long expiration
+        req.sessionOptions = req.sessionOptions || {};
+        req.sessionOptions.maxAge = 30 * 24 * 60 * 60 * 1000; // 30 days
+      }
+      req.flash('success', `សួរស្តី ${user.username}`);
+      // redirect to originally requested page or home
+      const redirectTo = req.session.returnTo || '/';
+      delete req.session.returnTo;
+      res.redirect(redirectTo);
+    });
+  })(req, res, next);
+});
 
 // LOG OUT
 router.get('/logout', function (req, res) {
