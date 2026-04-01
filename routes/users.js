@@ -1,9 +1,6 @@
 const User = require('../models/user.js');
 var passport = require('passport');
-// var mongoose = require('mongoose');
 var express = require('express');
-// var localStrategy = require('passport-local');
-// var passportLocalMongoose = require('passport-local-mongoose');
 var router = express.Router();
 
 var isLoggedIn = require('../mw/isLoggedIn');
@@ -24,18 +21,18 @@ router.post('/register', isLoggedIn, isAdmin, function (req, res, next) {
       req.flash('error', err.message);
       return res.render('signup.ejs');
     }
-    req.logOut();
-    passport.authenticate('local')(req, res, function () {
-      req.flash('success', 'សួរស្តី' + user.username);
-      // console.log(user);
-      res.redirect('/book');
+    req.logOut(function (logoutErr) {
+      if (logoutErr) { return next(logoutErr); }
+      passport.authenticate('local')(req, res, function () {
+        req.flash('success', 'សួរស្តី' + user.username);
+        res.redirect('/book');
+      });
     });
     // res.redirect("/login");
   });
 });
 /* GET login form. */
 router.get('/login', (req, res, next) => {
-  // console.log(req.flash('error'));
   if (req.user) {
     req.flash('error', 'លោក​កំពុង​នៅ​ក្នុង​ប្រពន្ធ័​ហើយ​ពេល​នេះ');
     res.redirect('/');

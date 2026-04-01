@@ -2,11 +2,8 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
-//const session = require('express-session')
-const session = require('cookie-session')
 const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -114,19 +111,14 @@ passport.deserializeUser(User.deserializeUser());
 //Passing Current User around to all routes //By doing it here so i don't
 //have to put current user in every routes manually
 app.use(function (req, res, next) {
-  // console.log('app.use localuser');
   res.locals.isUser = req.user;
-  // res.locals.isAdmin = req.user.role.admin;
   res.locals.error = req.flash('error');
   res.locals.success = req.flash('success');
   res.locals.newbook = 'false';
   res.locals.page_title = 'សូម​សរសើរ​នាម​ទ្រង់';
-  // console.log(res.locals.isUser);
   next();
 });
 
-app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-app.use(bodyParser.json()); // for parsing application/json
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -152,7 +144,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-  // console.log(err);
 });
 
 module.exports = app;

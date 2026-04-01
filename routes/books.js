@@ -39,18 +39,10 @@ var Songlist = require('../models/songlists');
 /* GET home page. */
 router.get('/', async function (req, res, next) {
   var songbooks = await Songbook.find();
-
-  if (songbooks.length <= 0) {
-    res.render('books.ejs', {
-      songbooks: songbooks,
-      bookCount: songbooks.length,
-    });
-  } else {
-    res.render('books.ejs', {
-      songbooks: songbooks,
-      bookCount: songbooks.length,
-    });
-  }
+  res.render('books.ejs', {
+    songbooks: songbooks,
+    bookCount: songbooks.length,
+  });
 });
 // Get NEW BOOK FORM
 router.get('/new', isLoggedIn, function (req, res, next) {
@@ -148,7 +140,6 @@ router.put('/:bid', isLoggedIn, function (req, res, next) {
     bookYear: req.body.bookYear,
     user: user,
   };
-  // console.log(updateSongbook);
   //findByIdAndUpdate
   Songbook.findByIdAndUpdate(req.params.bid, updateSongbook)
     .then((updated) => {

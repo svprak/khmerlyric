@@ -1,4 +1,3 @@
-// var Joi = require('joi');
 var mongoose = require('mongoose');
 var passportLocalMongoose = require('passport-local-mongoose');
 // 1. Songbook Schema
@@ -24,11 +23,6 @@ const userSchema = new mongoose.Schema({
       type: Boolean,
       default: true
     }
-  },
-  password: {
-    type: String,
-    minlength: 3,
-    maxlength: 1024
   }
 });
 
